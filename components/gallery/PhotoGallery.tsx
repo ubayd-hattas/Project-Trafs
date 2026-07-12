@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
 import type { GalleryItem } from '@/data/gallery';
@@ -12,17 +12,57 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
   );
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const filtered = useMemo(
     () => (activeCategory === "All" ? items : items.filter((i) => i.category === activeCategory)),
     [items, activeCategory]
   );
 
-  const closeLightbox = () => setLightboxIndex(null);
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+    // Return focus to the trigger element when closing
+    if (triggerRef.current) {
+      triggerRef.current.focus();
+    }
+  };
+  
   const showNext = () =>
     setLightboxIndex((i) => (i === null ? null : (i + 1) % filtered.length));
+    
   const showPrev = () =>
     setLightboxIndex((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    
+    // Focus the close button when lightbox opens
+    const closeBtn = document.getElementById("lightbox-close-btn");
+    if (closeBtn) closeBtn.focus();
+    
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+      
+      if (e.key === "Tab") {
+        const focusable = document.querySelectorAll('.lightbox-focusable');
+        const first = focusable[0] as HTMLElement;
+        const last = focusable[focusable.length - 1] as HTMLElement;
+        
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex, filtered.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -49,8 +89,11 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
           <button
             key={item.id}
             type="button"
-            onClick={() => setLightboxIndex(index)}
-            className="group relative aspect-square overflow-hidden rounded-xs"
+            onClick={(e) => {
+              triggerRef.current = e.currentTarget;
+              setLightboxIndex(index);
+            }}
+            className="group relative aspect-square overflow-hidden rounded-xs focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
           >
             <PlaceholderImage
               src={item.image}
@@ -70,14 +113,15 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={filtered[lightboxIndex].title}
+          aria-label="Image lightbox"
           className="fixed inset-0 z-[70] flex items-center justify-center bg-navy-900/90 p-4"
         >
           <button
+            id="lightbox-close-btn"
             type="button"
             onClick={closeLightbox}
             aria-label="Close image viewer"
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20"
+            className="lightbox-focusable absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -85,7 +129,7 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
             type="button"
             onClick={showPrev}
             aria-label="Previous image"
-            className="absolute left-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20"
+            className="lightbox-focusable absolute left-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -102,11 +146,13 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
             type="button"
             onClick={showNext}
             aria-label="Next image"
-            className="absolute right-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20"
+            className="lightbox-focusable absolute right-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>
-          <p className="absolute bottom-6 text-sm text-parchment-200">{filtered[lightboxIndex].title}</p>
+          <p className="absolute bottom-6 text-sm text-parchment-200" aria-live="polite">
+            {filtered[lightboxIndex].title}
+          </p>
         </div>
       ) : null}
     </div>

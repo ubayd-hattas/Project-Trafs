@@ -94,7 +94,7 @@ export const footerColumns: { title: string; links: NavItem[] }[] = [
       { label: "Past Papers", href: "/academics#past-papers" },
       { label: "Newsletters", href: "/news-events#newsletter-archive" },
       { label: "Policies", href: "/policies" },
-      { label: "Sitemap", href: "/sitemap" },
+      { label: "Sitemap", href: "/sitemap-page" },
     ],
   },
   {

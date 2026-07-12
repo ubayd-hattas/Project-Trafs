@@ -14,6 +14,9 @@ export const galleryItems: GalleryItem[] = [
   { id: "g4", title: "Assembly hall", category: "Campus", image: "/placeholders/assembly.svg" },
   { id: "g5", title: "Open day", category: "Community", image: "/placeholders/students.svg" },
   { id: "g6", title: "Library reading corner", category: "Campus", image: "/placeholders/gallery-2.svg" },
-  { id: "g7", title: "Historic school photograph", category: "History", image: "/placeholders/historic-1.svg" },
-  { id: "g8", title: "Harold Cressy, first principal", category: "History", image: "/placeholders/historic-2.svg" },
+  { id: "g7", title: "Class of the 60s", category: "History", image: "/placeholders/classof60s.webp" },
+  { id: "g8", title: "Class of 64", category: "History", image: "/placeholders/classof64.webp" },
+  { id: "g9", title: "Class of 69", category: "History", image: "/placeholders/classof69.webp" },
+  { id: "g10", title: "Historic School Photograph", category: "History", image: "/placeholders/historic-2.webp" },
+  { id: "g11", title: "Old Generation", category: "History", image: "/placeholders/old_generation.webp" },
 ];

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { primaryNav } from '@/data/navigation';
 import { siteConfig } from '@/data/siteConfig';
@@ -10,6 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { MobileNavDrawer } from '@/components/layout/MobileNavDrawer';
 
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -58,7 +60,11 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 rounded-xs px-3 py-2 text-sm font-semibold text-navy-800 transition-colors duration-150 hover:text-brass-600"
+                  className={`flex items-center gap-1 rounded-xs px-3 py-2 text-sm font-semibold transition-colors duration-150 ${
+                    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"))
+                      ? "text-brass-600"
+                      : "text-navy-800 hover:text-brass-600"
+                  }`}
                   aria-expanded={item.children ? openMenu === item.label : undefined}
                   aria-haspopup={item.children ? "true" : undefined}
                 >
@@ -96,7 +102,7 @@ export function Header() {
             <Phone className="h-4 w-4" aria-hidden="true" />
             {siteConfig.phone}
           </a>
-          <Button href="/admissions/how-to-apply" className="hidden sm:inline-flex" variant="primary">
+          <Button href="/admissions#application-process" className="hidden sm:inline-flex" variant="primary">
             Apply Now
           </Button>
           <button

@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="container-page">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="News & Events" title="What's happening at Trafalgar" />
-            <Button href="/news-events/news" variant="ghost">
+            <Button href="/news-events#latest-news" variant="ghost">
               View all news
             </Button>
           </div>
@@ -95,7 +95,7 @@ export default function HomePage() {
         <div className="container-page">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="Achievements" title="Excellence, term after term" />
-            <Button href="/achievements/academic" variant="ghost">
+            <Button href="/academics#results" variant="ghost">
               View all achievements
             </Button>
           </div>
@@ -115,7 +115,7 @@ export default function HomePage() {
             <h2 className="font-display text-3xl sm:text-4xl text-parchment-100">A history worth telling</h2>
             <p className="mt-5 text-parchment-200/85 leading-relaxed">{historyIntro}</p>
             <Link
-              href="/about/our-history"
+              href="/about#history"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brass-300 hover:text-brass-200"
             >
               Explore our history <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -134,8 +134,8 @@ export default function HomePage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
               { title: "Why Trafalgar", body: "A values-driven, high-achieving school with over a century of heritage.", href: "/about" },
-              { title: "How to Apply", body: "A clear, step-by-step admissions process for Grade 8 and beyond.", href: "/admissions/how-to-apply" },
-              { title: "Our Curriculum", body: "CAPS-aligned subjects across the senior and FET phases.", href: "/academics/curriculum" },
+              { title: "How to Apply", body: "A clear, step-by-step admissions process for Grade 8 and beyond.", href: "/admissions#application-process" },
+              { title: "Our Curriculum", body: "CAPS-aligned subjects across the senior and FET phases.", href: "/academics#curriculum" },
             ].map((card) => (
               <Link
                 key={card.title}
@@ -178,7 +178,7 @@ export default function HomePage() {
         <div className="container-page">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="Alumni" title="Where Trafalgar learners go next" />
-            <Button href="/alumni/stories" variant="ghost">
+            <Button href="/alumni#stories" variant="ghost">
               Read more stories
             </Button>
           </div>
@@ -195,7 +195,7 @@ export default function HomePage() {
         <div className="container-page">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading eyebrow="Calendar" title="Upcoming events" />
-            <Button href="/news-events/events" variant="ghost">
+            <Button href="/news-events#events" variant="ghost">
               Full calendar
             </Button>
           </div>
@@ -212,7 +212,7 @@ export default function HomePage() {
         title="Giving is receiving"
         description="Join the Alumni Association, mentor a current learner, or make a gift that keeps Trafalgar's next century as strong as its first."
         primary={{ label: "Support Trafalgar", href: "/giving/donate" }}
-        secondary={{ label: "Join the Alumni Association", href: "/alumni/association" }}
+        secondary={{ label: "Join the Alumni Association", href: "/alumni#association" }}
       />
 
       {/* Contact & location strip */}

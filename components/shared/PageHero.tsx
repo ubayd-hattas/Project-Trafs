@@ -5,12 +5,22 @@ export function PageHero({
   title,
   description,
   image = "/placeholders/hero.webp",
+  overlayStrength = "medium",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   image?: string;
+  overlayStrength?: "light" | "medium" | "dark";
 }) {
+  const overlayConfig = {
+    light: { opacity: "opacity-65", bg: "bg-navy-800/35" },
+    medium: { opacity: "opacity-55", bg: "bg-navy-800/50" },
+    dark: { opacity: "opacity-45", bg: "bg-navy-800/65" },
+  };
+
+  const { opacity, bg } = overlayConfig[overlayStrength];
+
   return (
     <section className="relative overflow-hidden bg-navy-800 text-parchment-100">
       <div className="absolute inset-0">
@@ -18,11 +28,10 @@ export function PageHero({
           src={image}
           alt=""
           fill
-          className="object-cover opacity-40"
+          className={`object-cover ${opacity}`}
           sizes="100vw"
         />
-        {/* Overlay reduced from /80 to /60 so the background photography is visible */}
-        <div className="absolute inset-0 bg-navy-800/60" />
+        <div className={`absolute inset-0 ${bg}`} />
       </div>
       <div className="container-page relative py-16 sm:py-20">
         {eyebrow ? (

@@ -10,9 +10,9 @@ export function NewsCard({ post }: { post: NewsPost }) {
     year: "numeric",
   });
 
+  // TODO: restore link when /news-events/news/[slug] is implemented
   return (
-    <Link
-      href={`/news-events/news/${post.slug}`}
+    <div
       className="group flex flex-col overflow-hidden rounded-xs border border-navy-800/10 bg-parchment-100 shadow-card transition-shadow hover:shadow-cardHover"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -34,6 +34,6 @@ export function NewsCard({ post }: { post: NewsPost }) {
         <h3 className="font-display text-base leading-snug text-navy-800">{post.title}</h3>
         <p className="line-clamp-2 text-sm text-ink-light">{post.excerpt}</p>
       </div>
-    </Link>
+    </div>
   );
 }

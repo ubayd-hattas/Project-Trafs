@@ -1,3 +1,4 @@
+﻿// NOTE: not yet rendered — awaiting backend decision
 "use client";
 
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 
 /**
  * Placeholder admissions enquiry form. This is a Phase 1 structural/UI
- * placeholder only — it does not submit anywhere yet. See PLACEHOLDERS.md:
+ * placeholder only â€” it does not submit anywhere yet. See PLACEHOLDERS.md:
  * a real submission needs a backend endpoint or a service like Formspree /
  * a school CMS integration before this goes live.
  */
@@ -23,7 +24,7 @@ export function AdmissionsEnquiryForm() {
         role="status"
         className="rounded-xs border border-brass-500/40 bg-brass-500/10 p-6 text-navy-900"
       >
-        <p className="font-semibold">Thank you — this is a prototype form.</p>
+        <p className="font-semibold">Thank you â€” this is a prototype form.</p>
         <p className="prose-body mt-2 text-sm">
           In the live site, this enquiry would be routed to the admissions office.
           No data has actually been sent.
@@ -32,6 +33,7 @@ export function AdmissionsEnquiryForm() {
     );
   }
 
+  // NOTE: not yet rendered â€” awaiting backend decision
   return (
     <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
       <div className="sm:col-span-1">
@@ -105,3 +107,4 @@ export function AdmissionsEnquiryForm() {
     </form>
   );
 }
+

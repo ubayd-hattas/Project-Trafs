@@ -16,13 +16,13 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { PlaceholderImage } from "@/components/shared/PlaceholderImage";
 import { AlumniStoryCard, type AlumniStory } from "@/components/alumni/AlumniStoryCard";
-import { AlumniSectionNav } from "@/components/alumni/AlumniSectionNav";
+import { SectionNav } from "@/components/shared/SectionNav";
 import { IconCard, type IconCardItem } from "@/components/shared/IconCard";
 
 export const metadata: Metadata = {
   title: "Alumni",
   description:
-    "Reconnect with the Trafalgar High School alumni community — stories, events, and ways to give back.",
+    "Reconnect with the Trafalgar High School alumni community â€” stories, events, and ways to give back.",
 };
 
 // ---------------------------------------------------------------------------
@@ -41,7 +41,7 @@ const sectionNavItems = [
 ];
 
 // ---------------------------------------------------------------------------
-// Alumni stories — placeholder profiles only. Do not invent real alumni.
+// Alumni stories â€” placeholder profiles only. Do not invent real alumni.
 // ---------------------------------------------------------------------------
 const featuredStories: AlumniStory[] = [
   {
@@ -50,7 +50,7 @@ const featuredStories: AlumniStory[] = [
     gradYear: "20XX",
     profession: "Placeholder profession",
     excerpt:
-      "Placeholder story — replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
+      "Placeholder story â€” replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
     image: "/placeholders/alumni-story-1.jpg",
   },
   {
@@ -59,7 +59,7 @@ const featuredStories: AlumniStory[] = [
     gradYear: "20XX",
     profession: "Placeholder profession",
     excerpt:
-      "Placeholder story — replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
+      "Placeholder story â€” replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
     image: "/placeholders/alumni-story-2.jpg",
   },
   {
@@ -68,29 +68,29 @@ const featuredStories: AlumniStory[] = [
     gradYear: "20XX",
     profession: "Placeholder profession",
     excerpt:
-      "Placeholder story — replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
+      "Placeholder story â€” replace with a real alumnus/alumna's journey once profiles are supplied by the school or Alumni Association.",
     image: "/placeholders/alumni-story-3.jpg",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Reunions & Events — placeholder events, no dates invented.
+// Reunions & Events â€” placeholder events, no dates invented.
 // ---------------------------------------------------------------------------
 const events = [
   {
     title: "Annual Reunion",
     when: "Date to be announced",
-    description: "Placeholder — replace with confirmed details once scheduled by the Alumni Association.",
+    description: "Placeholder â€” replace with confirmed details once scheduled by the Alumni Association.",
   },
   {
     title: "Networking Evening",
     when: "Date to be announced",
-    description: "Placeholder — an evening for alumni across industries and graduating years to connect.",
+    description: "Placeholder â€” an evening for alumni across industries and graduating years to connect.",
   },
   {
     title: "Founders Day Celebration",
     when: "Date to be announced",
-    description: "Placeholder — a celebration of Trafalgar's founding and heritage, open to the wider alumni community.",
+    description: "Placeholder â€” a celebration of Trafalgar's founding and heritage, open to the wider alumni community.",
   },
 ];
 
@@ -100,27 +100,27 @@ const events = [
 const giveBackItems: IconCardItem[] = [
   {
     title: "Mentor learners",
-    description: "Placeholder — offer guidance to current learners navigating subject choices, careers or university applications.",
+    description: "Placeholder â€” offer guidance to current learners navigating subject choices, careers or university applications.",
     icon: Users,
   },
   {
     title: "Career talks",
-    description: "Placeholder — share your career journey with learners considering their own path after matric.",
+    description: "Placeholder â€” share your career journey with learners considering their own path after matric.",
     icon: Mic,
   },
   {
     title: "Donate books",
-    description: "Placeholder — contribute textbooks or library resources to support current learners.",
+    description: "Placeholder â€” contribute textbooks or library resources to support current learners.",
     icon: BookOpen,
   },
   {
     title: "Sponsor programmes",
-    description: "Placeholder — support a specific academic, sporting or cultural programme at the school.",
+    description: "Placeholder â€” support a specific academic, sporting or cultural programme at the school.",
     icon: Handshake,
   },
   {
     title: "Financial donations",
-    description: "Support the school directly via the Alumni Association's bank account — see banking details below.",
+    description: "Support the school directly via the Alumni Association's bank account â€” see banking details below.",
     icon: HandCoins,
   },
 ];
@@ -131,28 +131,28 @@ export default function AlumniPage() {
       <PageHero
         eyebrow="Alumni"
         title="Once a Trafalgarian, always a Trafalgarian"
-        description="A lifelong community built on shared history and Per Angusta, Ad Augusta — through difficulties, to honours. Reconnect, celebrate the journey, and help shape the next generation."
+        description="A lifelong community built on shared history and Per Angusta, Ad Augusta â€” through difficulties, to honours. Reconnect, celebrate the journey, and help shape the next generation."
         image="/placeholders/alumni-hero.jpg"
       />
       <Breadcrumbs trail={[{ label: "Alumni" }]} />
-      <AlumniSectionNav items={sectionNavItems} />
+      <SectionNav ariaLabel="Page sections" items={sectionNavItems} />
 
       {/* Welcome ------------------------------------------------------------ */}
-      <section id="welcome" className="container-page scroll-mt-24 py-16 sm:py-20">
+      <section id="welcome" className="container-page scroll-mt-36 py-16 sm:py-20">
         <SectionHeading
           eyebrow="Welcome"
           title="Your Trafalgar story doesn't end at matric"
-          description="Placeholder — replace with a warmer, school-specific welcome once supplied. In general terms: every Trafalgarian carries a piece of this school's history forward. The alumni community exists to keep that connection alive — through reunions, mentorship, and the ongoing support that helps today's learners walk the same path you did."
+          description="Placeholder â€” replace with a warmer, school-specific welcome once supplied. In general terms: every Trafalgarian carries a piece of this school's history forward. The alumni community exists to keep that connection alive â€” through reunions, mentorship, and the ongoing support that helps today's learners walk the same path you did."
         />
       </section>
 
       {/* Trafalgar Alumni Association ---------------------------------------- */}
-      <section id="association" className="scroll-mt-24 bg-navy-800/[0.03] py-16 sm:py-20">
+      <section id="association" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Trafalgar Alumni Association"
             title="A home for every former Trafalgarian"
-            description="Placeholder — replace with the Association's official mission statement, committee structure and history once supplied. In general terms, the Association exists to keep former learners connected to each other and to the school, and to organise the reunions, mentorship and giving initiatives described on this page."
+            description="Placeholder â€” replace with the Association's official mission statement, committee structure and history once supplied. In general terms, the Association exists to keep former learners connected to each other and to the school, and to organise the reunions, mentorship and giving initiatives described on this page."
           />
           <div className="mt-8 rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card sm:flex sm:items-center sm:justify-between sm:gap-6">
             <div>
@@ -174,11 +174,11 @@ export default function AlumniPage() {
       </section>
 
       {/* Alumni Stories -------------------------------------------------------- */}
-      <section id="stories" className="container-page scroll-mt-24 py-16 sm:py-20">
+      <section id="stories" className="container-page scroll-mt-36 py-16 sm:py-20">
         <SectionHeading
           eyebrow="Alumni Stories"
           title="Where Trafalgar has taken us"
-          description="A small selection of alumni journeys — placeholders for now. As real stories are shared with the Association, this section will grow into a fuller archive."
+          description="A small selection of alumni journeys â€” placeholders for now. As real stories are shared with the Association, this section will grow into a fuller archive."
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featuredStories.map((story) => (
@@ -200,12 +200,12 @@ export default function AlumniPage() {
       </section>
 
       {/* Reunions & Events -------------------------------------------------------- */}
-      <section id="events" className="scroll-mt-24 bg-navy-800/[0.03] py-16 sm:py-20">
+      <section id="events" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading
             eyebrow="Reunions & Events"
             title="Gatherings worth showing up for"
-            description="Placeholder events — no dates have been confirmed yet. This section will be updated as the Association schedules each year's calendar."
+            description="Placeholder events â€” no dates have been confirmed yet. This section will be updated as the Association schedules each year's calendar."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {events.map((event) => (
@@ -220,7 +220,7 @@ export default function AlumniPage() {
       </section>
 
       {/* Ways to Give Back -------------------------------------------------------- */}
-      <section id="give-back" className="container-page scroll-mt-24 py-16 sm:py-20">
+      <section id="give-back" className="container-page scroll-mt-36 py-16 sm:py-20">
         <SectionHeading
           eyebrow="Ways to Give Back"
           title="Support the next generation of Trafalgarians"
@@ -240,7 +240,7 @@ export default function AlumniPage() {
       </section>
 
       {/* Alumni Spotlight -------------------------------------------------------- */}
-      <section id="spotlight" className="scroll-mt-24 bg-navy-800 py-16 text-parchment-100 sm:py-20">
+      <section id="spotlight" className="scroll-mt-36 bg-navy-800 py-16 text-parchment-100 sm:py-20">
         <div className="container-page grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xs">
             <PlaceholderImage
@@ -255,7 +255,7 @@ export default function AlumniPage() {
             <p className="eyebrow text-brass-300 mb-3">Alumni Spotlight</p>
             <h2 className="font-display text-2xl sm:text-3xl">Placeholder Name, Class of 20XX</h2>
             <p className="mt-4 max-w-xl text-parchment-200/85">
-              Placeholder — this space is reserved to feature one distinguished Trafalgar alumnus or
+              Placeholder â€” this space is reserved to feature one distinguished Trafalgar alumnus or
               alumna each period. Replace with a real name, achievement and short profile once
               confirmed by the school or Alumni Association.
             </p>
@@ -264,11 +264,11 @@ export default function AlumniPage() {
       </section>
 
       {/* Gallery Preview -------------------------------------------------------- */}
-      <section id="gallery" className="container-page scroll-mt-24 py-16 sm:py-20">
+      <section id="gallery" className="container-page scroll-mt-36 py-16 sm:py-20">
         <SectionHeading
           eyebrow="Gallery Preview"
           title="Moments from the Trafalgar community"
-          description="A preview only — the full photo collection lives on the Gallery page."
+          description="A preview only â€” the full photo collection lives on the Gallery page."
         />
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {["gallery-1.jpg", "gallery-2.jpg", "gallery-3.jpg"].map((file) => (
@@ -294,7 +294,7 @@ export default function AlumniPage() {
       </section>
 
       {/* FAQ -------------------------------------------------------- */}
-      <section id="faq" className="scroll-mt-24 bg-navy-800/[0.03] py-16 sm:py-20">
+      <section id="faq" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading eyebrow="Frequently Asked Questions" title="Common alumni questions" />
           <div className="mt-8 space-y-4">
@@ -315,7 +315,7 @@ export default function AlumniPage() {
                 How do I update my contact details?
               </summary>
               <p className="prose-body mt-3 text-sm">
-                Placeholder — no confirmed process exists yet. In the meantime, contact the Association
+                Placeholder â€” no confirmed process exists yet. In the meantime, contact the Association
                 by email above.
               </p>
             </details>
@@ -324,7 +324,7 @@ export default function AlumniPage() {
                 How do I volunteer?
               </summary>
               <p className="prose-body mt-3 text-sm">
-                Placeholder — see the Ways to Give Back section above for mentoring, career talks and
+                Placeholder â€” see the Ways to Give Back section above for mentoring, career talks and
                 sponsorship options, or email the Association to discuss other ways to help.
               </p>
             </details>
@@ -346,7 +346,7 @@ export default function AlumniPage() {
       </section>
 
       {/* Contact Alumni Office -------------------------------------------------------- */}
-      <section id="contact" className="container-page scroll-mt-24 py-16 sm:py-20">
+      <section id="contact" className="container-page scroll-mt-36 py-16 sm:py-20">
         <SectionHeading eyebrow="Contact Alumni Office" title="Get in touch with the Association" />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div className="space-y-4">
@@ -358,7 +358,7 @@ export default function AlumniPage() {
             </div>
             <div className="flex items-center gap-3 rounded-xs border border-navy-800/10 bg-parchment-100 p-5 shadow-card">
               <Phone className="h-5 w-5 shrink-0 text-brass-600" aria-hidden="true" />
-              <span className="text-sm text-ink-muted">Placeholder — direct alumni office phone number to be confirmed.</span>
+              <span className="text-sm text-ink-muted">Placeholder â€” direct alumni office phone number to be confirmed.</span>
             </div>
           </div>
 
@@ -395,7 +395,7 @@ export default function AlumniPage() {
               Trafalgar shaped you. Help shape what comes next.
             </h2>
             <p className="mt-3 max-w-xl text-parchment-200/85">
-              Reconnect with the Alumni Association, share your story, or find a way to give back —
+              Reconnect with the Alumni Association, share your story, or find a way to give back â€”
               every generation of Trafalgarians makes the next one stronger.
             </p>
           </div>
@@ -411,3 +411,6 @@ export default function AlumniPage() {
     </>
   );
 }
+
+
+

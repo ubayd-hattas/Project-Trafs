@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from "lucide-react";
 import { PageHero } from '@/components/shared/PageHero';
@@ -8,7 +8,7 @@ import { QuoteBlock } from '@/components/shared/QuoteBlock';
 import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
 import { Timeline } from '@/components/about/Timeline';
 import { StaffCard } from '@/components/about/StaffCard';
-import { AboutSectionNav } from '@/components/about/AboutSectionNav';
+import { SectionNav } from '@/components/shared/SectionNav';
 import { historyIntro, missionPoints, siteConfig } from '@/data/siteConfig';
 import { timeline } from '@/data/timeline';
 import { leadership, heads, sgbMembers } from '@/data/staff';
@@ -16,16 +16,16 @@ import { leadership, heads, sgbMembers } from '@/data/staff';
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Trafalgar High School's story, mission and vision, leadership, governance and campus — founded 1912, Zonnebloem, Cape Town.",
+    "Trafalgar High School's story, mission and vision, leadership, governance and campus â€” founded 1912, Zonnebloem, Cape Town.",
 };
 
 // Derived directly from the "What We Stand For" commitments already used in
-// the Mission section below — presented as short value labels for scannability.
+// the Mission section below â€” presented as short value labels for scannability.
 // No new facts introduced; wording lightly tightened for a chip/card format.
 const coreValues = [
   { title: "Caring Community", body: "A caring, progressive and involved community of learners, educators and parents/guardians." },
   { title: "Diversity & Tolerance", body: "Positive, progressive values that embrace understanding, tolerance and appreciation of South Africa's diverse cultures." },
-  { title: "Per Angusta, Ad Augusta", body: "The ability to overcome, succeed and emerge triumphantly — our motto given full expression." },
+  { title: "Per Angusta, Ad Augusta", body: "The ability to overcome, succeed and emerge triumphantly â€” our motto given full expression." },
   { title: "Educational Excellence", body: "An ethic of excellence cultivated and nurtured among learners, educators and the parent community." },
   { title: "Accountability & Transparency", body: "The bedrock of every activity across the school." },
 ];
@@ -65,7 +65,7 @@ export default function AboutPage() {
         image="/placeholders/hero.webp"
       />
       <Breadcrumbs trail={[{ label: "About" }]} />
-      <AboutSectionNav items={sectionNavItems} />
+      <SectionNav ariaLabel="Page sections" items={sectionNavItems} />
 
       {/* 2. WELCOME */}
       <section id="welcome" className="container-page scroll-mt-36 py-16 sm:py-20">
@@ -75,7 +75,7 @@ export default function AboutPage() {
             <p className="prose-body mt-5 text-lg">
               Founded in {siteConfig.foundedYear} in the heart of historic District Six, Trafalgar High School holds
               the distinction of being the first high school for people of colour in South Africa. More than a
-              century later, that founding purpose — access to a real, rigorous education — still shapes everything
+              century later, that founding purpose â€” access to a real, rigorous education â€” still shapes everything
               we do, just minutes from Cape Town&rsquo;s CBD and the foot of Table Mountain.
             </p>
             <p className="prose-body mt-4">
@@ -111,7 +111,7 @@ export default function AboutPage() {
         <div className="prose-body mt-5 max-w-2xl space-y-4">
           <p>
             Our vision is to be a beacon of academic excellence, personal growth, and civic responsibility in Cape
-            Town and beyond — a school where every learner is empowered to achieve their full potential, and where
+            Town and beyond â€” a school where every learner is empowered to achieve their full potential, and where
             the values of our founders remain as alive today as they were in 1912.
           </p>
           <p>
@@ -138,7 +138,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-10">
             <QuoteBlock
-              quote={`${siteConfig.motto} — through difficulties, to honours. That we have the ability to overcome difficulties so that we succeed and emerge triumphantly.`}
+              quote={`${siteConfig.motto} â€” through difficulties, to honours. That we have the ability to overcome difficulties so that we succeed and emerge triumphantly.`}
               attribution="The Trafalgar motto, explained"
               variant="dark"
             />
@@ -156,17 +156,17 @@ export default function AboutPage() {
               <p>
                 By 1911, education for Coloured learners in Cape Town was largely limited to mission schools
                 offering primary education only. The need for a high school was actively driven by Dr Abdurahman,
-                President of the African Political Organisation, and Harold Cressy — the first Coloured person to
+                President of the African Political Organisation, and Harold Cressy â€” the first Coloured person to
                 obtain a B.A. degree at the University of Cape Town.
               </p>
               <p>
                 After pressure on the Cape School Board, Trafalgar A2 Public School (formerly Chapel Street A2
                 Public School) opened its doors in January {siteConfig.foundedYear}, with Harold Cressy as its
-                first principal. The school began with a roll of 60 pupils — 28 boys and 32 girls — and a staff of
+                first principal. The school began with a roll of 60 pupils â€” 28 boys and 32 girls â€” and a staff of
                 five teachers, teaching Dutch, Latin and elementary science alongside the usual elementary subjects.
               </p>
               <p>
-                In 1913, Rosie Waradea Abdurahman — Dr Abdurahman&rsquo;s eldest daughter — became the first
+                In 1913, Rosie Waradea Abdurahman â€” Dr Abdurahman&rsquo;s eldest daughter â€” became the first
                 Coloured girl from a Coloured school to pass the University of Cape Town&rsquo;s Junior Certificate
                 Examination, a milestone the APO celebrated even as it publicly criticised the school&rsquo;s
                 inadequate facilities at the time.
@@ -175,7 +175,7 @@ export default function AboutPage() {
                 Since its founding, the school has been led by a succession of principals and acting principals:
                 H Cressy, Maurice, Storey, Muller, Heneke, Roux, Steenveld, Ravens, Meltzer, Emeran, Taliep,
                 Hendricks and Southgate. Across that history, Trafalgar has produced generations of doctors,
-                lawyers, teachers, engineers, business people and sportsmen — grounded in the belief that education
+                lawyers, teachers, engineers, business people and sportsmen â€” grounded in the belief that education
                 should develop the full human personality and strengthen respect for human rights, tolerance and
                 friendship among all people, regardless of race, colour or creed.
               </p>
@@ -317,20 +317,20 @@ export default function AboutPage() {
                 has a proud history both in terms of providing superior education as well as ensuring 
                 that its students understand their responsibility in society and their communities. 
                 These values that have endured for more than a century can be traced to when the school 
-                was founded in 1912 after the President of the African People’s Organisation, Dr Abdurahman, 
+                was founded in 1912 after the President of the African Peopleâ€™s Organisation, Dr Abdurahman, 
                 who was a councillor at the time, campaigned for a co-educational school for coloured people. 
-                The school’s first principal, Harold Cressy was also the first person of colour to get a BA 
+                The schoolâ€™s first principal, Harold Cressy was also the first person of colour to get a BA 
                 degree from the University of Cape Town. Both these men understood that a good education was 
                 the means to changing social and economic circumstances.
                 </p>
                 <p>
                   As a school that had existed through the worst of apartheid, these values which are embodied 
-                  in the school’s motto – ‘Per Angusta, Ad Augusta’ (Through Difficulties to Success) – have been 
+                  in the schoolâ€™s motto â€“ â€˜Per Angusta, Ad Augustaâ€™ (Through Difficulties to Success) â€“ have been 
                   handed down to the students that have passed through this institution. The values imparted and 
                   bonds that are built among students and between students and the school often define how those 
                   students tackle the difficulties that are presented later in life. It is these values that ensured 
                   that despite the apartheid government declaring the area that the school is situated, District Six, 
-                  a white area in 1966, the school’s enrolment numbers did not drop as former students continued to 
+                  a white area in 1966, the schoolâ€™s enrolment numbers did not drop as former students continued to 
                   send their children to the school even if it meant travelling long distances. These values filter 
                   down generations as many of the staff members, including myself, are past pupils and we have recently 
                   registered an alumni association who play an active role in supporting the school in all its activities. 
@@ -374,7 +374,7 @@ export default function AboutPage() {
           </div>
           <p className="mt-8 max-w-2xl text-sm text-ink-muted">
             The full teaching staff directory is intentionally not published in this prototype out of respect
-            for junior staff privacy — see PLACEHOLDERS.md for the recommended approach (consent-based opt-in
+            for junior staff privacy â€” see PLACEHOLDERS.md for the recommended approach (consent-based opt-in
             listing) before this section is populated for real.
           </p>
         </div>
@@ -398,7 +398,7 @@ export default function AboutPage() {
         <div className="prose-body mt-12 max-w-2xl space-y-4">
           <h3 className="font-display text-2xl text-navy-800">AGM & meeting minutes</h3>
           <p>
-            Placeholder — replace with real AGM notices and downloadable meeting minutes once the school
+            Placeholder â€” replace with real AGM notices and downloadable meeting minutes once the school
             confirms what can be published publicly.
           </p>
         </div>
@@ -454,3 +454,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+

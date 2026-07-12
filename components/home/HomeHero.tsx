@@ -44,11 +44,11 @@ export function HomeHero() {
             classroom, on the field, and long after learners leave Zonnebloem.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <Button href="/admissions/how-to-apply" variant="primary">
+            <Button href="/admissions#application-process" variant="primary">
               Apply Now
             </Button>
             <Button
-              href="/about/our-history"
+              href="/about#history"
               variant="ghost"
               className="border-parchment-100/30 text-parchment-100 hover:border-parchment-100/60 hover:bg-parchment-100/10"
             >
