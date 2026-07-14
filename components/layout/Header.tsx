@@ -25,10 +25,24 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b border-navy-800/10 bg-parchment-200/95 backdrop-blur transition-shadow ${
+      className={`sticky top-0 z-50 w-full transition-shadow ${
         scrolled ? "shadow-card" : ""
       }`}
     >
+      {/*
+        Background layer carries the blur/translucency instead of the
+        <header> element itself. `backdrop-filter` (Tailwind `backdrop-blur`)
+        establishes a new containing block for any `position: fixed`
+        descendant — if it lived on <header>, anything fixed-positioned
+        rendered inside <header> (like a nav drawer) would be sized/clipped
+        to the header's own box instead of the viewport. Isolating it here
+        keeps <header> filter-free so this can't happen again.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 border-b border-navy-800/10 bg-parchment-200/95 backdrop-blur"
+      />
+
       <div className="container-page flex items-center justify-between gap-4 py-3">
         <Link href="/" className="flex items-center gap-3 shrink-0" aria-label={`${siteConfig.name} home`}>
           <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-navy-800/10 overflow-hidden shrink-0">

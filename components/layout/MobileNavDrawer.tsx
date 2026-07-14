@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronDown, Phone } from "lucide-react";
 import { primaryNav } from '@/data/navigation';
 import { siteConfig } from '@/data/siteConfig';
@@ -11,6 +12,13 @@ import { Button } from '@/components/ui/Button';
 export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [openSection, setOpenSection] = useState<string | null>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  // Portals must not render on the server (no document.body yet), and mounting
+  // must happen after hydration to avoid SSR/client markup mismatches.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -24,7 +32,7 @@ export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () 
       document.body.style.top = "";
       document.body.style.width = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      
+
       const hamburger = document.getElementById('mobile-menu-button');
       if (hamburger) {
         hamburger.focus();
@@ -36,7 +44,7 @@ export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () 
     if (!open) return;
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      
+
       if (e.key === "Tab") {
         if (!drawerRef.current) return;
         const focusableElements = drawerRef.current.querySelectorAll(
@@ -59,7 +67,7 @@ export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () 
       }
     };
     document.addEventListener("keydown", handleKey);
-    
+
     // Focus close button on open
     const timeout = setTimeout(() => {
       if (drawerRef.current) {
@@ -74,26 +82,26 @@ export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () 
     };
   }, [open, onClose]);
 
-  return (
-    <div 
-      id="mobile-nav-drawer" 
-      className={`fixed inset-0 z-[60] lg:hidden motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:duration-0 ${
+  const drawer = (
+    <div
+      id="mobile-nav-drawer"
+      className={`fixed inset-0 z-[60] h-[100dvh] w-screen lg:hidden motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:duration-0 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
-      role="dialog" 
-      aria-modal="true" 
+      role="dialog"
+      aria-modal="true"
       aria-label="Site navigation menu"
     >
-      <div 
+      <div
         className={`absolute inset-0 bg-navy-900/60 backdrop-blur-sm motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:duration-0 ${
           open ? "opacity-100" : "opacity-0"
-        }`} 
-        onClick={onClose} 
-        aria-hidden="true" 
+        }`}
+        onClick={onClose}
+        aria-hidden="true"
       />
-      <div 
+      <div
         ref={drawerRef}
-        className={`absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-parchment-100 shadow-cardHover motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:duration-0 ${
+        className={`absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto overscroll-contain bg-parchment-100 shadow-cardHover motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-in-out motion-reduce:duration-0 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -184,4 +192,10 @@ export function MobileNavDrawer({ open, onClose }: { open: boolean; onClose: () 
       </div>
     </div>
   );
+
+  // Render at document.body so no ancestor's `transform`, `filter`, or
+  // `backdrop-filter` (e.g. Header's `backdrop-blur`) can ever turn into a
+  // containing block that clips this fixed-position overlay.
+  if (!mounted) return null;
+  return createPortal(drawer, document.body);
 }
