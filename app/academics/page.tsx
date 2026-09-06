@@ -1,448 +1,223 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Briefcase,
-  FlaskConical,
-  Globe2,
-  Palette,
-  Download,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { Badge } from "@/components/ui/Badge";
-import { StatCounter } from "@/components/ui/StatCounter";
-import { PathwayCard, type Pathway } from "@/components/academics/PathwayCard";
 import { SectionNav } from "@/components/shared/SectionNav";
-import { ResourceLinkCard, type ExternalResource } from "@/components/shared/ResourceLinkCard";
-
+import { CTASection } from "@/components/shared/CTASection";
 export const metadata: Metadata = {
-  title: "Academics",
+  title: "Academics & matric results",
   description:
-    "Curriculum, subject pathways, matric results, academic support and exam resources at Trafalgar High School.",
+    "Explore the Trafalgar curriculum, subject choices, the Class of 2024 matric result and trusted revision resources.",
 };
-
-// ---------------------------------------------------------------------------
-// Section nav
-// ---------------------------------------------------------------------------
-const sectionNavItems = [
-  { id: "excellence", label: "Overview" },
-  { id: "curriculum", label: "Curriculum" },
-  { id: "subjects", label: "Subject Pathways" },
-  { id: "support", label: "Academic Support" },
-  { id: "matric-results", label: "Matric Results" },
-  { id: "past-papers", label: "Past Papers" },
-  { id: "learning-resources", label: "Learning Resources" },
-  { id: "downloads", label: "Downloads" },
-];
-
-// ---------------------------------------------------------------------------
-// Subject pathways â€” grouped from Trafalgar's verified Grade 8â€“12 subject
-// offering (see Grade 8/9 compulsory list and Grade 10â€“12 stream data below).
-// Presented as pathways rather than a flat subject list, per IA guidance.
-// ---------------------------------------------------------------------------
-const pathways: Pathway[] = [
-  {
-    name: "STEM",
-    icon: FlaskConical,
-    description:
-      "For learners who show strength in Mathematics and the sciences and want to keep those doors open through to matric.",
-    subjects: [
-      "Mathematics",
-      "Physical Science",
-      "Life Science",
-      "Natural Sciences (Gr 8â€“9)",
-      "Technology (Gr 8â€“9)",
-      "Computer Applications Technology (if offered â€” to be confirmed)",
-    ],
-  },
-  {
-    name: "Commerce",
-    icon: Briefcase,
-    description:
-      "For learners interested in business, finance and the economy, building on the Economic & Management Sciences foundation from Grade 8â€“9.",
-    subjects: [
-      "Accounting",
-      "Business Studies",
-      "Economic & Management Sciences (Gr 8â€“9)",
-      "Tourism",
-    ],
-  },
-  {
-    name: "Humanities",
-    icon: Globe2,
-    description:
-      "For learners drawn to people, society, place and the past â€” building on the Social Sciences foundation from Grade 8â€“9.",
-    subjects: [
-      "History",
-      "Geography",
-      "Social Sciences (Gr 8â€“9)",
-    ],
-  },
-  {
-    name: "Creative & Practical",
-    icon: Palette,
-    description:
-      "For learners who work best hands-on and creatively, from the Creative Arts foundation phase through to practical FET subjects.",
-    subjects: [
-      "Creative Arts (Gr 8â€“9)",
-      "Consumer Studies",
-    ],
-    note: "Specific offerings (e.g. Visual Arts, Dramatic Arts) to be confirmed with the school.",
-  },
-];
-
-const coreSubjects = [
+// Subject lists retained from the repository’s verified curriculum. Annual combinations require school confirmation.
+const senior = [
   "English Home Language",
-  "Afrikaans Eerste Addisionele Taal",
-  "Mathematics or Mathematics Literacy",
-  "Life Orientation (Gr 10â€“12)",
+  "Afrikaans First Additional Language",
+  "Mathematics",
+  "Social Sciences",
+  "Natural Sciences",
+  "Economic & Management Sciences",
+  "Technology",
+  "Creative Arts",
+  "Life Orientation",
 ];
-
-// ---------------------------------------------------------------------------
-// Past examination paper resources â€” external, trusted, opened in a new tab.
-// No content is copied from these sites; these are convenience links only.
-// ---------------------------------------------------------------------------
-const pastPaperResources: ExternalResource[] = [
-  {
-    name: "Stanmore Physics",
-    description:
-      "Free past exam papers and study notes for Grades 10â€“12 across Physical Sciences, Mathematics, Accounting, Geography and more.",
-    href: "https://stanmorephysics.com/",
-  },
-  {
-    name: "Department of Basic Education â€” NSC Past Papers",
-    description:
-      "Official National Senior Certificate (matric) past examination papers, published directly by the national Department of Basic Education.",
-    href: "https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations/NSCPastExaminationpapers.aspx",
-  },
-  {
-    name: "Test Papers South Africa",
-    description:
-      "A large, free collection of past exam papers and memorandums for Grades 1â€“12, in English and Afrikaans.",
-    href: "https://www.testpapers.co.za/",
-  },
-  {
-    name: "WCED ePortal â€” Past Papers",
-    description:
-      "Western Cape Education Department portal with NSC past papers and marking guidelines, plus broader curriculum support resources.",
-    href: "https://wcedeportal.co.za/past-papers",
-  },
+const electives = [
+  "Physical Sciences",
+  "Accounting",
+  "Geography",
+  "History",
+  "Business Studies",
+  "Tourism",
+  "Consumer Studies",
 ];
-
-// ---------------------------------------------------------------------------
-// Downloads â€” school documents. All placeholders until real files/links are
-// supplied by the school office.
-// ---------------------------------------------------------------------------
-const downloads = [
-  { title: "Subject Selection Forms", note: "Placeholder â€” link to the current form once supplied by the school office." },
-  { title: "Academic Policies", note: "Placeholder â€” link to the SGB-approved academic policy document(s)." },
-  { title: "Stationery Lists", note: "Placeholder â€” link to the current per-grade stationery list." },
-  { title: "Assessment Timetables", note: "Placeholder â€” link to the current term's assessment timetable." },
+const sections = [
+  { id: "curriculum", label: "Curriculum" },
+  { id: "subjects", label: "Subject choices" },
+  { id: "matric-results", label: "Matric results" },
+  { id: "past-papers", label: "Revision resources" },
+  { id: "support", label: "Support" },
 ];
-
 export default function AcademicsPage() {
   return (
     <>
       <PageHero
         eyebrow="Academics"
-        title="A curriculum built for excellence"
-        description="CAPS-aligned subjects, a proud matric record, and the resources learners need to succeed â€” from Grade 8 through to matric."
-        image="/placeholders/science-lab.svg"
+        title="Learning for the possibilities ahead."
+        description="A broad foundation. Informed subject choices. A shared commitment to educational excellence, from Grade 8 to matric."
       />
       <Breadcrumbs trail={[{ label: "Academics" }]} />
-      <SectionNav ariaLabel="Page sections" items={sectionNavItems} />
-
-      {/* 1. Academic Excellence -------------------------------------------------- */}
-      <section id="excellence" className="container-page scroll-mt-36 py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="Academic Excellence"
-          title="Achievement is a habit at Trafalgar"
-          description="Trafalgar High School is committed to giving every learner, from Grade 8 to matric, a rigorous, CAPS-aligned education and the support structures to succeed in it. That commitment is reflected in a consistently strong matric pass rate and a curriculum that keeps genuine subject choice open for as long as possible."
-        />
-      </section>
-
-      {/* 2. Curriculum Overview --------------------------------------------------- */}
-      <section id="curriculum" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
+      <SectionNav items={sections} ariaLabel="Academics page sections" />
+      <section className="editorial-section" id="curriculum">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Curriculum Overview"
-            title="CAPS-aligned, from Grade 8 to matric"
-            description="Trafalgar follows the national Curriculum and Assessment Policy Statement (CAPS). Learners are supported through two phases: the Senior Phase (Grades 8â€“9), which builds a broad general foundation, and the FET Phase (Grades 10â€“12), where learners choose subjects that lead to the National Senior Certificate (matric)."
-          />
-
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-              <Badge tone="navy">Grade 8 &amp; 9 â€” Senior Phase</Badge>
-              <p className="prose-body mt-3 text-sm">
-                All Grade 8 and 9 learners follow a common curriculum, so every learner keeps a broad
-                foundation across sciences, commerce, humanities, technology and the arts before
-                choosing a subject pathway in Grade 10.
+          <div className="editorial-grid">
+            <SectionHeading
+              eyebrow="The learning journey"
+              title="From a strong foundation to your next step."
+            />
+            <p className="editorial-body">
+              Trafalgar follows the Curriculum and Assessment Policy Statement
+              (CAPS). The Senior Phase builds a broad foundation; the Further
+              Education and Training phase develops the subject choices that
+              lead to matric.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-10 md:grid-cols-2">
+            <div className="border-t-2 border-brass-500 pt-7">
+              <p className="eyebrow">Grades 8–9 · Senior Phase</p>
+              <h3 className="font-display text-3xl mt-4">Explore widely.</h3>
+              <p className="editorial-body mt-4">
+                Build a foundation across languages, sciences, humanities,
+                commerce and the arts.
               </p>
-              <ul className="prose-body mt-4 space-y-2 text-sm">
-                <li>English Home Language</li>
-                <li>Afrikaans Eerste Addisionele Taal</li>
-                <li>Mathematics</li>
-                <li>Social Sciences â€” History and Geography component</li>
-                <li>Natural Sciences</li>
-                <li>Economic and Management Sciences (EMS)</li>
-                <li>Technology</li>
-                <li>Creative Arts</li>
-                <li>Life Orientation</li>
-              </ul>
-            </div>
-
-            <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-              <Badge tone="navy">Grade 10â€“12 â€” FET Phase</Badge>
-              <p className="prose-body mt-3 text-sm">
-                From Grade 10, learners take three compulsory subjects plus four subjects chosen from
-                the FET elective list, forming the subject pathways set out below.
-              </p>
-              <p className="prose-body mt-4 text-sm font-semibold text-navy-800">Compulsory for all learners:</p>
-              <ul className="prose-body mt-2 space-y-2 text-sm">
-                {coreSubjects.map((s) => (
-                  <li key={s}>{s}</li>
+              <ul className="mt-6 grid sm:grid-cols-2 gap-x-8">
+                {senior.map((s) => (
+                  <li
+                    className="border-b border-navy-800/10 py-3 text-sm"
+                    key={s}
+                  >
+                    {s}
+                  </li>
                 ))}
               </ul>
-              <p className="prose-body mt-4 text-sm font-semibold text-navy-800">Chosen from (four subjects):</p>
-              <ul className="prose-body mt-2 space-y-2 text-sm">
-                <li>Physical Science</li>
-                <li>Accounting</li>
-                <li>Geography</li>
-                <li>History</li>
-                <li>Business Studies</li>
-                <li>Tourism</li>
-                <li>Consumer Studies</li>
-              </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Subject Offerings / Pathways ------------------------------------------ */}
-      <section id="subjects" className="container-page scroll-mt-36 py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="Subject Offerings"
-          title="Learning pathways, not just a subject list"
-          description="From Grade 10, learners build their timetable around a pathway. The groupings below reflect Trafalgar's actual FET subject offering, organised the way most prospective families think about it."
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {pathways.map((pathway) => (
-            <PathwayCard key={pathway.name} pathway={pathway} />
-          ))}
-        </div>
-
-        <details className="mt-10 rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-          <summary className="cursor-pointer font-display text-lg text-navy-800">
-            How subject stream placement works
-          </summary>
-          <div className="prose-body mt-4 space-y-3 text-sm">
-            <p>
-              Placement into a Science-leaning pathway requires a learner to show proficiency in both
-              Mathematics and the Natural Sciences component at Grade 9 level â€” historically a minimum
-              of 50% in each. Placement into a Commerce-leaning pathway similarly requires 50% in both
-              Mathematics and EMS at Grade 9 level.
-            </p>
-            <p>
-              How many classes can be offered within each pathway in any given year depends on the
-              number of prospective learners and staff availability, alongside learner achievement.
-              Final subject combinations are confirmed with the school each year.
-            </p>
-          </div>
-        </details>
-      </section>
-
-      {/* 4. Academic Support -------------------------------------------------------- */}
-      <section id="support" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Academic Support"
-            title="Support structures for every learner"
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-              <h3 className="font-display text-lg text-navy-800">Extra classes</h3>
-              <p className="prose-body mt-2 text-sm">
-                Placeholder â€” replace with the real subject areas and timetable for after-hours extra
-                classes.
+            <div className="border-t-2 border-navy-800 pt-7" id="subjects">
+              <p className="eyebrow">Grades 10–12 · FET Phase</p>
+              <h3 className="font-display text-3xl mt-4">
+                Choose with purpose.
+              </h3>
+              <p className="editorial-body mt-4">
+                Build your subject combination around your strengths and
+                interests. Speak to the school about the combinations available
+                for your year.
               </p>
+              <details className="mt-6 border-b border-navy-800/15 py-4" open>
+                <summary className="font-semibold cursor-pointer min-h-8">
+                  Core subjects
+                </summary>
+                <p className="text-sm leading-7 mt-3">
+                  English Home Language, Afrikaans First Additional Language,
+                  Mathematics or Mathematical Literacy, and Life Orientation.
+                </p>
+              </details>
+              <details className="border-b border-navy-800/15 py-4">
+                <summary className="font-semibold cursor-pointer min-h-8">
+                  Explore elective subjects
+                </summary>
+                <ul className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                  {electives.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+                <p className="photo-caption">
+                  Confirm current availability and combinations with the school.
+                </p>
+              </details>
             </div>
-            <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-              <h3 className="font-display text-lg text-navy-800">Peer tutoring</h3>
-              <p className="prose-body mt-2 text-sm">
-                Placeholder â€” replace with details of any peer-mentorship or tutoring programme.
-              </p>
-            </div>
-            <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-              <h3 className="font-display text-lg text-navy-800">Learner support services</h3>
-              <p className="prose-body mt-2 text-sm">
-                Placeholder â€” replace with details of counselling, learning-barrier support, or
-                study-skills workshops offered.
-              </p>
-            </div>
           </div>
         </div>
       </section>
-
-      {/* 5. Matric Results ----------------------------------------------------------- */}
-      <section id="matric-results" className="container-page scroll-mt-36 py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="Matric Results"
-          title="A proud record of matric achievement"
-        />
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-          <StatCounter value={96} suffix="%" label="2024 Pass Rate" />
-          <StatCounter value={2024} label="Most Recent Year" />
-          <StatCounter value={0} label="Distinctions (placeholder)" />
-          <StatCounter value={0} label="Bachelor Passes (placeholder)" />
-        </div>
-
-        <div className="mt-14">
-          <SectionHeading
-            eyebrow="Archive"
-            title="Results by year"
-            description="Placeholder archive table â€” replace with verified, year-by-year matric statistics as they are released."
-          />
-          <div className="mt-8 overflow-x-auto rounded-xs border border-navy-800/10 shadow-card">
-            <table className="w-full min-w-[520px] border-collapse bg-parchment-100 text-left text-sm">
-              <thead>
-                <tr className="bg-navy-800 text-parchment-100">
-                  <th scope="col" className="px-5 py-3 font-semibold">Year</th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Pass rate</th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Distinctions</th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Bachelor passes</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-navy-800/10">
-                <tr>
-                  <td className="px-5 py-3 font-semibold text-navy-800">2024</td>
-                  <td className="px-5 py-3">96.4%</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-semibold text-navy-800">2023</td>
-                  <td className="px-5 py-3">Placeholder %</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-semibold text-navy-800">2022</td>
-                  <td className="px-5 py-3">Placeholder %</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                  <td className="px-5 py-3">Placeholder count</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-4 text-xs text-ink-muted">
-            Only the 2024 pass rate (96.4%) is verified from the current public site; all other figures
-            are placeholders â€” see PLACEHOLDERS.md. Updated statistics are required from the school
-            before this section can be considered current.
-          </p>
-        </div>
-      </section>
-
-      {/* 6. Past Examination Papers --------------------------------------------------- */}
-      <section id="past-papers" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Past Examination Papers"
-            title="Trusted external revision resources"
-            description="Rather than host exam PDFs on this site, we point learners to established, freely available South African past-paper resources. These are maintained by the organisations linked below â€” Trafalgar does not host, copy, or take credit for their content. Each link opens in a new tab."
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {pastPaperResources.map((resource) => (
-              <ResourceLinkCard key={resource.name} resource={resource} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Learning Resources ---------------------------------------------------------- */}
-      <section id="learning-resources" className="container-page scroll-mt-36 py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="Learning Resources"
-          title="Study tips, subject support &amp; policies"
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-            <h3 className="font-display text-lg text-navy-800">Study tips</h3>
-            <p className="prose-body mt-2 text-sm">
-              Placeholder â€” no verified study-skills content currently exists on the school&rsquo;s site.
-              Replace once supplied by the school.
-            </p>
-          </div>
-          <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-            <h3 className="font-display text-lg text-navy-800">Subject support</h3>
-            <p className="prose-body mt-2 text-sm">
-              Placeholder â€” replace with any subject-specific extra help, resources, or contact points.
-            </p>
-          </div>
-          <div className="rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card">
-            <h3 className="font-display text-lg text-navy-800">Academic policies</h3>
-            <p className="prose-body mt-2 text-sm">
-              Placeholder â€” replace with a link to the SGB-approved academic policy document(s), or see
-              Downloads below.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Downloads ---------------------------------------------------------------------- */}
-      <section id="downloads" className="scroll-mt-36 bg-navy-800/[0.03] py-16 sm:py-20">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Downloads"
-            title="School forms &amp; documents"
-            description="Placeholder listings â€” replace each with a real, downloadable file once supplied by the school office."
-          />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {downloads.map((item) => (
-              <div
-                key={item.title}
-                className="flex items-center gap-4 rounded-xs border border-navy-800/10 bg-parchment-100 p-5 shadow-card"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-800/5 text-brass-600">
-                  <Download className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="font-semibold text-navy-800">{item.title}</p>
-                  <p className="text-sm text-ink-muted">{item.note}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Call To Action ------------------------------------------------------------------ */}
-      <section className="bg-navy-800 py-16 text-parchment-100 sm:py-20">
-        <div className="container-page flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <section
+        className="history-feature editorial-section"
+        id="matric-results"
+      >
+        <div className="container-page editorial-grid items-center">
           <div>
-            <p className="eyebrow text-brass-300 mb-2">Academic Enquiries</p>
-            <h2 className="font-display text-2xl sm:text-3xl">
-              Questions about curriculum or subject choice?
-            </h2>
-            <p className="mt-3 max-w-xl text-parchment-200/85">
-              Our staff are happy to talk parents and learners through subject pathways, matric
-              requirements, and the support available. Get in touch and we&rsquo;ll point you to the
-              right person.
+            <p className="eyebrow mb-6">Matric results · Class of 2024</p>
+            <p className="result-number !text-brass-300">
+              96.4<span>%</span>
             </p>
+            <p className="mt-4 text-parchment-200">Matric pass rate</p>
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brass-500 px-6 py-3 font-semibold text-navy-900 shadow-card transition-colors hover:bg-brass-400"
-          >
-            Contact the school
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <div>
+            <h2 className="section-heading">A result worth celebrating.</h2>
+            <p className="editorial-body mt-6">
+              Congratulations to Trafalgar’s Class of 2024 on a matric pass rate
+              of 96.4%.
+            </p>
+            <p className="text-sm text-parchment-200/75 leading-7 mt-5">
+              This is the verified 2024 result published on the existing school
+              website. For subsequent results and detailed performance
+              information, please contact the school.
+            </p>
+            <Link className="text-link mt-5" href="/contact">
+              Enquire about results <ArrowRight size={17} />
+            </Link>
+          </div>
         </div>
       </section>
+      <section className="editorial-section" id="past-papers">
+        <div className="container-page editorial-grid">
+          <SectionHeading
+            eyebrow="Prepare & practise"
+            title="Resources for your revision."
+            description="Go directly to the organisations that publish and maintain these learning materials."
+          />
+          <div>
+            <a
+              className="resource-row"
+              href="https://wcedeportal.westerncape.gov.za/home"
+            >
+              <div>
+                <h3>WCED ePortal</h3>
+                <p>
+                  Past papers, subject resources and matric revision support.
+                </p>
+              </div>
+              <ArrowUpRight className="shrink-0" />
+            </a>
+            <a
+              className="resource-row"
+              href="https://www.education.gov.za/Curriculum/NationalSeniorCertificate(NSC)Examinations/NSCPastExaminationpapers.aspx"
+            >
+              <div>
+                <h3>DBE past examination papers</h3>
+                <p>
+                  National Senior Certificate papers and marking guidelines.
+                </p>
+              </div>
+              <ArrowUpRight className="shrink-0" />
+            </a>
+            <Link className="resource-row" href="/parents-portal">
+              <div>
+                <h3>School documents & resources</h3>
+                <p>
+                  Find out how to obtain current timetables and stationery
+                  lists.
+                </p>
+              </div>
+              <ArrowRight className="shrink-0" />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="editorial-section bg-[#efede6]" id="support">
+        <div className="container-page editorial-grid">
+          <SectionHeading
+            eyebrow="Ask for guidance"
+            title="You don’t have to work it out alone."
+          />
+          <div className="editorial-body">
+            <p>
+              For help with subject choices, assessment arrangements or learning
+              support, speak to your teacher or contact the school office.
+            </p>
+            <p>
+              Current support arrangements and timetables should be confirmed
+              directly with the school.
+            </p>
+            <Link className="text-link mt-4" href="/contact">
+              Contact the school <ArrowRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <CTASection
+        title="See yourself at Trafalgar."
+        primary={{ label: "Explore admissions", href: "/admissions" }}
+        secondary={{ label: "Student life", href: "/student-life" }}
+      />
     </>
   );
 }
-
-
-

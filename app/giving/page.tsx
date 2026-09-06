@@ -3,4 +3,3 @@
 export default function GivingPage() {
   redirect("/alumni#give-back");
 }
-

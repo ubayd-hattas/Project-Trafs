@@ -1,56 +1,56 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { ResourceLinkCard } from "@/components/shared/ResourceLinkCard";
-
+import { SectionHeading } from "@/components/shared/SectionHeading";
 export const metadata: Metadata = {
-  title: "Policies",
+  title: "School policies & documents",
+  description:
+    "How to obtain current Trafalgar school policies, admissions documents and the Code of Conduct.",
 };
-
 export default function PoliciesPage() {
   return (
     <>
-      <PageHero title="Policies" description="School governance documents." image="/placeholders/principal.webp" />
-      <div className="container-page py-12">
-        <Breadcrumbs trail={[{ label: "Policies" }]} />
-        <div className="mt-8 max-w-3xl">
-          <p className="mb-8 text-lg text-ink-light">
-            Trafalgar High School is committed to providing a safe, equitable, and transparent environment for all learners and staff. Please find our core policy documents below.
-          </p>
-          
-          <div className="mb-10 rounded-xs bg-parchment-200 p-6 border border-navy-800/10">
-            <h2 className="font-display text-xl text-navy-800 mb-2">POPIA Compliance</h2>
-            <p className="text-ink-dark text-sm">
-              In accordance with the Protection of Personal Information Act (POPIA), Trafalgar High School takes every reasonable precaution to protect the personal information of our learners, parents, and staff. Information collected is used solely for educational and administrative purposes.
+      <PageHero
+        eyebrow="School information"
+        title="Policies & documents."
+        description="Start with the current, approved documents for the information that matters to your family."
+      />
+      <Breadcrumbs trail={[{ label: "Policies" }]} />
+      <section className="editorial-section">
+        <div className="container-page editorial-grid">
+          <SectionHeading
+            eyebrow="Request a document"
+            title="Clear information. Informed decisions."
+          />
+          <div className="editorial-body">
+            <p>
+              Contact the school office for the current admissions policy, Code
+              of Conduct, fee schedule and other school documents.
             </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <ResourceLinkCard
-              resource={{
-                name: "Admissions Policy",
-                description: "Official admissions criteria and guidelines.",
-                href: "https://trafalgarhighschool.co.za/admission-policy/",
-              }}
-            />
-            <ResourceLinkCard
-              resource={{
-                name: "Admissions Procedure",
-                description: "Step-by-step procedure for new applications.",
-                href: "https://trafalgarhighschool.co.za/admission-procedure/",
-              }}
-            />
-            <ResourceLinkCard
-              resource={{
-                name: "WCED Portal",
-                description: "Western Cape Education Department official admissions portal.",
-                href: "https://wcedonline.westerncape.gov.za/admissions-202122",
-              }}
-            />
+            <p>
+              Confirm that you have the version applicable to your learner’s
+              school year before relying on an older copy.
+            </p>
+            <ul className="mt-5">
+              {[
+                "Admissions policy and procedure",
+                "Learner Code of Conduct",
+                "Approved fee schedule and assistance information",
+                "School governance enquiries",
+              ].map((t) => (
+                <li key={t} className="py-4 border-b border-navy-800/15">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <Link className="text-link mt-5" href="/contact">
+              Contact the school office <ArrowRight size={17} />
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
-

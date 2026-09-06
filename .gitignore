@@ -1,3 +1,7 @@
 node_modules/
 .next/
 .env*.local
+.npm-cache/
+qa/*.png
+qa/asset-candidates/
+.node_modules-repair-backup/

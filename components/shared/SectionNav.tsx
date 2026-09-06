@@ -41,7 +41,7 @@ export function SectionNav({
   return (
     <nav
       aria-label={ariaLabel}
-      className="sticky top-16 z-20 border-b border-navy-800/10 bg-parchment-100/95 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden overflow-x-auto"
+      className="section-navigation sticky top-[84px] md:top-[127px] xl:top-[139px] z-20 border-b border-navy-800/10 bg-parchment-100/95 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden overflow-x-auto"
     >
       <div className="container-page flex items-center gap-1 py-3 min-w-max">
         {items.map(({ id, label }) => {

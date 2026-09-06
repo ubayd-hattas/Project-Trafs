@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Sans } from "next/font/google";
-import '@/app/globals.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { siteConfig } from '@/data/siteConfig';
+import "@/app/globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { siteUrl } from "@/data/siteUrl";
+import { siteConfig } from "@/data/siteConfig";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -19,18 +20,17 @@ const plexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trafalgar-redesign-prototype.example"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  robots: { index: false, follow: false },
   icons: {
-    icon: [
-      { url: "/placeholders/icon.png", type: "image/png" },
-    ],
-    apple: "/placeholders/icon.png",
-    shortcut: "/placeholders/icon.png",
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: "/apple-icon.png",
+    shortcut: "/icon.png",
   },
   openGraph: {
     title: siteConfig.name,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     locale: "en_ZA",
     images: [
       {
-        url: "/placeholders/hero.webp",
+        url: "/images/social-preview.jpg",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -48,7 +48,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en-ZA" className={`${fraunces.variable} ${plexSans.variable}`}>
       <body className="font-body">

@@ -10,7 +10,7 @@ export const siteConfig = {
   foundedYear: 1912, // verified
   tagline: "Cape Town's historic school for excellence, since 1912",
   description:
-    "Trafalgar High School is the oldest school for people of colour in South Africa, founded in 1912. A proposal prototype for a modern, accessible school website.",
+    "Discover Trafalgar High School in Zonnebloem, Cape Town: heritage since 1912, learning, admissions and community.",
   url: "https://trafalgarhighschool.co.za",
   address: {
     line1: "35 Kuiper Street",

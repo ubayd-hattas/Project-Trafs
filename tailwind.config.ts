@@ -30,13 +30,13 @@ const config: Config = {
           300: "#e0c179",
           400: "#cda454",
           500: "#b8893a",
-          600: "#96702e",
+          600: "#806024",
           700: "#755625",
         },
         ink: {
           DEFAULT: "#1c2430",
           light: "#3f4a58",
-          muted: "#6b7684",
+          muted: "#596573",
         },
       },
       fontFamily: {
@@ -47,11 +47,11 @@ const config: Config = {
         content: "80rem",
       },
       borderRadius: {
-        xs: "0.375rem",
+        xs: "0.125rem",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(13,23,38,0.06), 0 1px 3px rgba(13,23,38,0.08)",
-        cardHover: "0 8px 24px rgba(13,23,38,0.14)",
+        card: "none",
+        cardHover: "0 3px 10px rgba(13,23,38,0.06)",
       },
       keyframes: {
         fadeUp: {

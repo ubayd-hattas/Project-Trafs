@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export type AccordionItem = {
@@ -9,14 +9,15 @@ export type AccordionItem = {
 };
 
 export function Accordion({ items }: { items: AccordionItem[] }) {
+  const instanceId = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <div className="divide-y divide-navy-800/10 rounded-xs border border-navy-800/10 bg-parchment-100 shadow-card">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
-        const panelId = `accordion-panel-${index}`;
-        const buttonId = `accordion-button-${index}`;
+        const panelId = `${instanceId}-panel-${index}`;
+        const buttonId = `${instanceId}-button-${index}`;
         return (
           <div key={item.question}>
             <h3>

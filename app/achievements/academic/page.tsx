@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-
-export default function AcademicAchievementsPage() {
-  redirect("/academics#results");
+export default function Page() {
+  redirect("/academics#matric-results");
 }

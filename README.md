@@ -1,3 +1,26 @@
+# Principal-demo redesign — September 2026
+
+The existing Next.js App Router / TypeScript / Tailwind application has been refined into a curated principal-demo proposal. The original project notes below are retained as historical context; this section describes the current implementation.
+
+- Responsive institutional header and keyboard-accessible mobile menu.
+- Editorial homepage with authentic school imagery, heritage, clearly dated matric results and coherent leadership presentation.
+- Consolidated About, Admissions, Academics, Student Life, News, Contact, Alumni, Gallery and parent-resource journeys.
+- No sample records, unconfirmed fee amounts, dead downloads or non-delivering forms on visitor routes.
+- Native dialog gallery with category filtering and keyboard navigation.
+- Per-page metadata, real crest icons, Open Graph image, sitemap and robots. Proposal pages remain noindex until official adoption.
+
+## Run locally
+
+Use npm install, npm run dev, npm run build and npm run start. On PowerShell installations that block npm.ps1, use npm.cmd instead.
+
+For a custom preview domain, set NEXT_PUBLIC_SITE_URL. Vercel preview origins are detected from VERCEL_URL. No backend or CMS configuration is needed.
+
+Deploy to Vercel using the normal Next.js preset, root directory, npm run build, and framework-managed output. No deployment has been performed by this redesign pass.
+
+Content provenance: [qa/asset-sources.md](qa/asset-sources.md). Outstanding official content: [PLACEHOLDERS.md](PLACEHOLDERS.md). QA instructions and results: [qa/README.md](qa/README.md).
+
+---
+
 # Trafalgar High School — Website Redesign (Prototype)
 
 > **One-line summary:** An independent, unpaid redesign prototype of trafalgarhighschool.co.za, built in Next.js/TypeScript/Tailwind by an alumnus (Head Boy, Class of 2025), to be presented to the school's principal as a proposal — not a live production site, and not a commissioned client project.

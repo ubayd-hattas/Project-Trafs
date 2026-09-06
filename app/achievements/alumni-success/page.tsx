@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-
-export default function AlumniSuccessPage() {
-  redirect("/alumni#spotlight");
+export default function Page() {
+  redirect("/alumni#stories");
 }

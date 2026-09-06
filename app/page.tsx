@@ -1,250 +1,178 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { HomeHero } from '@/components/home/HomeHero';
-import { StatCounter } from '@/components/ui/StatCounter';
-import { NewsCard } from '@/components/news-events/NewsCard';
-import { EventCard } from '@/components/news-events/EventCard';
-import { AchievementBadgeCard } from '@/components/home/AchievementBadgeCard';
-import { AlumniStoryCard } from '@/components/alumni/AlumniStoryCard';
-import { Timeline } from '@/components/about/Timeline';
-import { CTASection } from '@/components/shared/CTASection';
-import { SectionHeading } from '@/components/shared/SectionHeading';
-import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
-import { Button } from '@/components/ui/Button';
-import { siteConfig, historyIntro } from '@/data/siteConfig';
-import { newsPosts } from '@/data/news';
-import { events } from '@/data/events';
-import { achievements } from '@/data/achievements';
-import { alumniStories } from '@/data/alumni';
-import { timeline } from '@/data/timeline';
-import { galleryItems } from '@/data/gallery';
-
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { HomeHero } from "@/components/home/HomeHero";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { CTASection } from "@/components/shared/CTASection";
+import { ArchiveStories } from "@/components/shared/ArchiveStories";
+import { Leadership } from "@/components/about/Leadership";
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Cape Town's historic school of excellence`,
-  description: `Trafalgar High School — founded in 1912 in Zonnebloem, Cape Town. South Africa's oldest co-educational school for people of colour.`,
+  title: {
+    absolute:
+      "Trafalgar High School | A proud history. A world of possibility.",
+  },
+  description:
+    "Discover Trafalgar High School in Zonnebloem, Cape Town. Our heritage since 1912, academics, admissions and school community.",
 };
-
 export default function HomePage() {
-  const latestNews = newsPosts.slice(0, 4);
-  const upcomingEvents = events.slice(0, 4);
-  const featuredAchievements = achievements.slice(0, 3);
-  const featuredAlumni = alumniStories.slice(0, 2);
-  const historyPreview = timeline.slice(0, 3);
-  const studentLifeShots = galleryItems.filter((g: any) => g.category !== "History").slice(0, 6);
-
   return (
     <>
       <HomeHero />
-
-      {/* Quick stats strip */}
-      <section aria-label="Trafalgar at a glance" className="border-b border-navy-800/10 bg-parchment-100 py-12">
-        <div className="container-page grid grid-cols-2 gap-8 sm:grid-cols-4">
-          <StatCounter value={siteConfig.foundedYear} label="Year founded" />
-          <StatCounter value={2026 - siteConfig.foundedYear} suffix="+" label="Years of heritage" />
-          <StatCounter value={96.4} suffix="%" label="Matric pass rate" />
-          <StatCounter value={500} suffix="+" label="Notable alumni" />
-        </div>
-      </section>
-
-      {/* Welcome message condensed */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div>
-            <p className="eyebrow mb-3">A Message From Our Principal</p>
-            <h2 className="section-heading">Welcome to Trafalgar</h2>
-            <p className="prose-body mt-5 text-lg">
-              As the oldest school for people of colour in South Africa, Trafalgar High School has a proud
-              history both in terms of providing superior education and ensuring that our students understand
-              their responsibility in society and their communities. These values — embodied in our motto
-              <em> Per Angusta, Ad Augusta</em> — have endured for more than a century and continue to
-              define everything we do.
+      <section className="editorial-section">
+        <div className="container-page editorial-grid">
+          <SectionHeading
+            eyebrow="Welcome to Trafalgar"
+            title="An education with roots. A future without limits."
+          />
+          <div className="editorial-body">
+            <p>
+              For more than a century, Trafalgar High School has been part of
+              the story of Cape Town. Founded in 1912 to open doors to
+              education, our school carries that purpose into every new
+              generation.
             </p>
-            <Link
-              href="/about#principal"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy-800 transition-colors hover:text-brass-600"
-            >
-              Read the full message <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <p>
+              Our values are simple and enduring: a caring community, respect
+              for our differences, and a commitment to educational excellence.
+            </p>
+            <Link href="/about" className="text-link mt-5">
+              Get to know our school <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xs shadow-card">
-            <PlaceholderImage src="/placeholders/principal.webp" alt="The Principal of Trafalgar High School" fill className="object-cover" sizes="(min-width: 1024px) 45vw, 100vw" />
-          </div>
         </div>
       </section>
-
-      {/* Latest news */}
-      <section className="bg-parchment-300/50 py-16 sm:py-20">
-        <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="News & Events" title="What's happening at Trafalgar" />
-            <Button href="/news-events#latest-news" variant="ghost">
-              View all news
-            </Button>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {latestNews.map((post: any) => (
-              <NewsCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements spotlight */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Achievements" title="Excellence, term after term" />
-            <Button href="/academics#results" variant="ghost">
-              View all achievements
-            </Button>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {featuredAchievements.map((a: any) => (
-              <AchievementBadgeCard key={a.id} achievement={a} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* History teaser */}
-      <section className="bg-navy-900 py-16 text-parchment-100 sm:py-20">
-        <div className="container-page grid gap-12 lg:grid-cols-2">
+      <section className="history-feature editorial-section">
+        <div className="container-page grid gap-12 md:grid-cols-[.65fr_1.35fr] lg:grid-cols-[.6fr_1fr_.9fr]">
           <div>
-            <p className="eyebrow text-brass-300 mb-3">Since 1912</p>
-            <h2 className="font-display text-3xl sm:text-4xl text-parchment-100">A history worth telling</h2>
-            <p className="mt-5 text-parchment-200/85 leading-relaxed">{historyIntro}</p>
-            <Link
-              href="/about#history"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brass-300 hover:text-brass-200"
-            >
-              Explore our history <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <p className="eyebrow mb-5">Our founding year</p>
+            <p className="history-year">1912</p>
+            <p className="history-note">
+              A belief in the power of education.
+              <br />A legacy that belongs to all of us.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow mb-4">Rooted in District Six</p>
+            <h2 className="section-heading">
+              A small school.
+              <br />
+              An extraordinary story.
+            </h2>
+            <p className="editorial-body mt-6">
+              Dr Abdurahman campaigned for a school where young people of colour
+              could continue their education. With Harold Cressy as its first
+              principal, Trafalgar opened its doors in 1912.
+            </p>
+            <Link href="/about#history" className="text-link mt-5">
+              Discover our heritage <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="text-parchment-100">
-            <Timeline milestones={historyPreview} />
-          </div>
+          <figure className="hidden lg:block">
+            <div className="relative aspect-[4/5]">
+              <Image
+                src="/images/class-of-1969.webp"
+                alt="Class of 1969 from the Trafalgar school archive"
+                fill
+                sizes="25vw"
+                className="object-cover grayscale"
+              />
+            </div>
+            <figcaption className="mt-3 text-xs text-parchment-200/70">
+              From the school archive · Class of 1969
+            </figcaption>
+          </figure>
         </div>
       </section>
-
-      {/* Academics & admissions strip */}
-      <section className="py-16 sm:py-20">
+      <section className="editorial-section">
         <div className="container-page">
-          <SectionHeading eyebrow="Get Started" title="Everything a family needs to know" align="center" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {[
-              { title: "Why Trafalgar", body: "A values-driven, high-achieving school with over a century of heritage.", href: "/about" },
-              { title: "How to Apply", body: "A clear, step-by-step admissions process for Grade 8 and beyond.", href: "/admissions#application-process" },
-              { title: "Our Curriculum", body: "CAPS-aligned subjects across the senior and FET phases.", href: "/academics#curriculum" },
-            ].map((card) => (
-              <Link
-                key={card.title}
-                href={card.href}
-                className="group rounded-xs border border-navy-800/10 bg-parchment-100 p-6 shadow-card transition-shadow hover:shadow-cardHover"
-              >
-                <h3 className="font-display text-xl text-navy-800">{card.title}</h3>
-                <p className="prose-body mt-2">{card.body}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-600">
-                  Learn more{" "}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </span>
+          <div className="editorial-grid items-center">
+            <div>
+              <SectionHeading
+                eyebrow="Learning & achievement"
+                title="The next chapter starts in the classroom."
+              />
+              <p className="editorial-body mt-6">
+                Explore the curriculum from Grade 8 to matric, make informed
+                subject choices, and find resources for the journey ahead.
+              </p>
+              <Link href="/academics" className="text-link mt-5">
+                Explore academics <ArrowRight size={17} />
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Student life gallery */}
-      <section className="bg-parchment-300/50 py-16 sm:py-20">
-        <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Student Life" title="Sport, culture, and everything between" />
-            <Button href="/gallery" variant="ghost">
-              View gallery
-            </Button>
-          </div>
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {studentLifeShots.map((shot: any) => (
-              <div key={shot.id} className="relative aspect-square overflow-hidden rounded-xs">
-                <PlaceholderImage src={shot.image} alt={shot.title} fill className="object-cover" sizes="20vw" />
+            </div>
+            <div className="result-feature">
+              <div>
+                <p className="eyebrow mb-4">Class of 2024</p>
+                <p className="result-number">
+                  96.4<span>%</span>
+                </p>
+                <p className="mt-3 text-sm">Matric pass rate</p>
               </div>
-            ))}
+              <div className="border-l border-navy-800/20 pl-6">
+                <h3 className="font-display text-2xl">A proud achievement.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-light">
+                  Celebrating the matric Class of 2024 and their place in
+                  Trafalgar’s story.
+                </p>
+                <Link
+                  href="/academics#matric-results"
+                  className="text-link mt-3"
+                >
+                  View result <ArrowUpRight size={16} />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Alumni spotlight */}
-      <section className="py-16 sm:py-20">
+      <section className="editorial-section bg-[#efede6]">
         <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Alumni" title="Where Trafalgar learners go next" />
-            <Button href="/alumni#stories" variant="ghost">
-              Read more stories
-            </Button>
+          <div className="flex flex-wrap justify-between items-end gap-5 mb-10">
+            <SectionHeading
+              eyebrow="Life at Trafalgar"
+              title="A place to find your stride."
+            />
+            <Link href="/student-life" className="text-link">
+              Discover student life <ArrowRight size={17} />
+            </Link>
           </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {featuredAlumni.map((story: any) => (
-              <AlumniStoryCard key={story.slug} story={story} />
-            ))}
+          <ArchiveStories />
+          <div className="mt-9 flex justify-between gap-6 flex-wrap border-t border-navy-800/15 pt-5">
+            <p className="text-sm text-ink-light">
+              Moments from our school’s 2025 photo archive.
+            </p>
+            <Link href="/news-events" className="text-link">
+              News & events <ArrowRight size={17} />
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* Upcoming events */}
-      <section className="bg-parchment-300/50 py-16 sm:py-20">
+      <section className="editorial-section">
         <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Calendar" title="Upcoming events" />
-            <Button href="/news-events#events" variant="ghost">
-              Full calendar
-            </Button>
+          <div className="editorial-grid mb-10">
+            <SectionHeading
+              eyebrow="Meet our leadership"
+              title="People at the heart of our school."
+            />
+            <div>
+              <p className="editorial-body">
+                Meet Principal Salwa Southgate and Vice Principal Anwar
+                Samsodien.
+              </p>
+              <Link href="/about#leadership" className="text-link mt-3">
+                About our school <ArrowRight size={17} />
+              </Link>
+            </div>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {events.map((event: any) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
+          <Leadership />
         </div>
       </section>
-
-      {/* Community / giving CTA */}
       <CTASection
-        title="Giving is receiving"
-        description="Join the Alumni Association, mentor a current learner, or make a gift that keeps Trafalgar's next century as strong as its first."
-        primary={{ label: "Support Trafalgar", href: "/giving/donate" }}
-        secondary={{ label: "Join the Alumni Association", href: "/alumni#association" }}
+        title="Your next chapter. Our shared story."
+        description="Considering Trafalgar for your family? Find admissions guidance and speak to the school office."
+        primary={{ label: "Explore admissions", href: "/admissions" }}
+        secondary={{ label: "Get in touch", href: "/contact" }}
       />
-
-      {/* Contact & location strip */}
-      <section className="py-16 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading eyebrow="Visit Us" title="Find us in Zonnebloem" />
-            <dl className="prose-body mt-6 space-y-3">
-              <div>
-                <dt className="font-semibold text-navy-800">Address</dt>
-                <dd>
-                  {siteConfig.address.line1}, {siteConfig.address.line2}, {siteConfig.address.city}
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-navy-800">Phone</dt>
-                <dd>{siteConfig.phone}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-navy-800">School hours</dt>
-                <dd>{siteConfig.hours}</dd>
-              </div>
-            </dl>
-            <Button href="/contact" variant="primary" className="mt-6">
-              Get in touch
-            </Button>
-          </div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xs">
-            <PlaceholderImage src="/placeholders/map.svg" alt="Placeholder campus map" fill className="object-cover" sizes="(min-width: 1024px) 45vw, 100vw" />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

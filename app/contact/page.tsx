@@ -1,57 +1,99 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { ContactForm } from "@/components/contact/ContactForm";
-import { CTASection } from "@/components/shared/CTASection";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { siteConfig } from "@/data/siteConfig";
-
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact & visit",
+  description:
+    "Contact Trafalgar High School on 021 465 2969. Find us at 35 Kuiper Street, Zonnebloem, Cape Town.",
 };
-
 export default function ContactPage() {
   return (
     <>
-      <PageHero title="Contact Us" description="Get in touch." image="/placeholders/assembly.webp" />
-      <div className="container-page py-12">
-        <Breadcrumbs trail={[{ label: "Contact Us" }]} />
-        <div className="mt-8 grid gap-12 lg:grid-cols-2">
+      <PageHero
+        eyebrow="Contact & visit"
+        title="We look forward to hearing from you."
+        description="For admissions, school information or reconnecting with Trafalgar, start with the school office."
+      />
+      <Breadcrumbs trail={[{ label: "Contact" }]} />
+      <section className="editorial-section">
+        <div className="container-page grid md:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <h2 className="font-display text-3xl text-navy-800">Visit or reach out</h2>
-            <div className="mt-6 space-y-4 text-ink-dark">
-              <p><strong>Address:</strong><br/>{siteConfig.address.line1}, {siteConfig.address.line2}, {siteConfig.address.city}</p>
-              <p><strong>Phone:</strong><br/><a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="hover:text-brass-600 transition-colors">{siteConfig.phone}</a></p>
-              <p><strong>Email:</strong><br/><a href={`mailto:${siteConfig.email}`} className="hover:text-brass-600 transition-colors">{siteConfig.email}</a></p>
-              <p><strong>School hours:</strong><br/>{siteConfig.hours}</p>
-            </div>
-            <div className="mt-8 aspect-video w-full overflow-hidden rounded-xs bg-parchment-300">
-              <iframe
-                title="Trafalgar High School Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d3310.2229555135114!2d18.428564075704172!3d-33.93539827320138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d8a0c24e03b%3A0x6b8f3a3e6c0f2a7!2sTrafalgar%20High%20School!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <SectionHeading eyebrow="The school office" title="Let’s talk." />
+            <dl className="mt-8">
+              <div className="py-5 border-b border-navy-800/15">
+                <dt className="eyebrow">Telephone</dt>
+                <dd>
+                  <a
+                    className="text-link text-2xl font-display"
+                    href="tel:+27214652969"
+                  >
+                    {siteConfig.phone} <ArrowUpRight size={20} />
+                  </a>
+                </dd>
+              </div>
+              <div className="py-5 border-b border-navy-800/15">
+                <dt className="eyebrow">Office hours</dt>
+                <dd className="mt-3 text-lg">Monday–Friday · 08:00–15:00</dd>
+              </div>
+              <div className="py-5">
+                <dt className="eyebrow">Find us</dt>
+                <dd className="mt-3 text-lg leading-8">
+                  35 Kuiper Street
+                  <br />
+                  Zonnebloem, Cape Town
+                </dd>
+              </div>
+            </dl>
+            <p className="editorial-body mt-4">
+              Please call ahead to arrange a visit or confirm office
+              availability during school holidays.
+            </p>
+            <a
+              className="text-link mt-5"
+              href="https://www.google.com/maps/search/?api=1&query=Trafalgar+High+School+35+Kuiper+Street+Cape+Town"
+            >
+              Get directions in Google Maps <ArrowUpRight size={17} />
+            </a>
           </div>
           <div>
-            <div className="mb-6 rounded-xs bg-navy-800/5 p-4 border border-navy-800/10">
-              <p className="text-sm font-semibold text-navy-800">This form is a prototype. For urgent enquiries, call {siteConfig.phone}.</p>
-            </div>
-            <ContactForm />
+            <figure>
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/entrance.webp"
+                  alt="The stone boundary wall and entrance to Trafalgar High School beneath Table Mountain"
+                  fill
+                  sizes="(min-width:768px) 50vw,100vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="photo-caption">
+                Our school in Zonnebloem, Cape Town
+              </figcaption>
+            </figure>
+            <Link href="/admissions" className="resource-row mt-5">
+              <div>
+                <h3>Admissions enquiries</h3>
+                <p>Application guidance, documents and next steps.</p>
+              </div>
+              <ArrowRight className="shrink-0" />
+            </Link>
+            <Link href="/alumni" className="resource-row">
+              <div>
+                <h3>Alumni & community</h3>
+                <p>
+                  Reconnect with your school and discuss ways to contribute.
+                </p>
+              </div>
+              <ArrowRight className="shrink-0" />
+            </Link>
           </div>
         </div>
-      </div>
-      <CTASection
-        title="Join the Trafalgar Family"
-        description="Learn more about our admissions process and requirements."
-        primary={{ label: "Admissions", href: "/admissions" }}
-      />
+      </section>
     </>
   );
 }
-
-

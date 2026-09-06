@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-
-export default function SportCultureAchievementsPage() {
-  redirect("/student-life#achievements");
+export default function Page() {
+  redirect("/student-life#sport");
 }

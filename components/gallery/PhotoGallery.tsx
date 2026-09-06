@@ -1,160 +1,137 @@
 "use client";
-
 import { useState, useMemo, useEffect, useRef } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
-import type { GalleryItem } from '@/data/gallery';
-
+import type { GalleryItem } from "@/data/gallery";
 export function PhotoGallery({ items }: { items: GalleryItem[] }) {
+  const [category, setCategory] = useState("All");
+  const [index, setIndex] = useState<number | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(items.map((i) => i.category)))],
-    [items]
+    [items],
   );
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  
-  const triggerRef = useRef<HTMLButtonElement | null>(null);
-
   const filtered = useMemo(
-    () => (activeCategory === "All" ? items : items.filter((i) => i.category === activeCategory)),
-    [items, activeCategory]
+    () =>
+      category === "All" ? items : items.filter((i) => i.category === category),
+    [category, items],
   );
-
-  const closeLightbox = () => {
-    setLightboxIndex(null);
-    // Return focus to the trigger element when closing
-    if (triggerRef.current) {
-      triggerRef.current.focus();
-    }
-  };
-  
-  const showNext = () =>
-    setLightboxIndex((i) => (i === null ? null : (i + 1) % filtered.length));
-    
-  const showPrev = () =>
-    setLightboxIndex((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
-
+  const isOpen = index !== null;
   useEffect(() => {
-    if (lightboxIndex === null) return;
-    
-    // Focus the close button when lightbox opens
-    const closeBtn = document.getElementById("lightbox-close-btn");
-    if (closeBtn) closeBtn.focus();
-    
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") showPrev();
-      if (e.key === "ArrowRight") showNext();
-      
-      if (e.key === "Tab") {
-        const focusable = document.querySelectorAll('.lightbox-focusable');
-        const first = focusable[0] as HTMLElement;
-        const last = focusable[focusable.length - 1] as HTMLElement;
-        
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
+    if (!isOpen) return;
+    const box = dialog.current;
+    if (!box) return;
+    box.showModal();
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      box.close();
+      document.body.style.overflow = overflow;
+      trigger.current?.focus();
     };
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [lightboxIndex, filtered.length]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  }, [isOpen]);
+  const close = () => setIndex(null);
+  const move = (n: number) =>
+    setIndex((i) =>
+      i === null ? null : (i + n + filtered.length) % filtered.length,
+    );
   return (
     <div>
-      <div role="group" aria-label="Filter gallery by category" className="mb-8 flex flex-wrap gap-2">
-        {categories.map((cat) => (
+      <div
+        role="group"
+        aria-label="Filter gallery by category"
+        className="flex gap-2 flex-wrap mb-8"
+      >
+        {categories.map((c) => (
           <button
-            key={cat}
-            type="button"
-            onClick={() => setActiveCategory(cat)}
-            aria-pressed={activeCategory === cat}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-              activeCategory === cat
-                ? "bg-navy-800 text-parchment-200"
-                : "border border-navy-800/20 text-navy-800 hover:bg-navy-800/5"
-            }`}
+            key={c}
+            aria-pressed={category === c}
+            onClick={() => setCategory(c)}
+            className={
+              "min-h-11 px-4 py-2 text-sm border border-navy-800/20 " +
+              (category === c
+                ? "bg-navy-800 text-white"
+                : "hover:bg-navy-800/5")
+            }
           >
-            {cat}
+            {c}
           </button>
         ))}
       </div>
-
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-        {filtered.map((item, index) => (
+      <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((p, i) => (
           <button
-            key={item.id}
-            type="button"
+            key={p.id}
             onClick={(e) => {
-              triggerRef.current = e.currentTarget;
-              setLightboxIndex(index);
+              trigger.current = e.currentTarget;
+              setIndex(i);
             }}
-            className="group relative aspect-square overflow-hidden rounded-xs focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
+            className="text-left group"
           >
-            <PlaceholderImage
-              src={item.image}
-              alt={item.title}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(min-width: 1024px) 22vw, 45vw"
-            />
-            <span className="absolute inset-x-0 bottom-0 bg-navy-900/70 px-2 py-1.5 text-left text-xs text-parchment-100 opacity-0 transition-opacity group-hover:opacity-100">
-              {item.title}
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={p.image}
+                alt={p.title}
+                fill
+                sizes="(min-width:1024px) 33vw,(min-width:640px) 50vw,100vw"
+                className="object-cover transition-transform group-hover:scale-[1.02]"
+              />
+            </div>
+            <span className="block mt-3 text-sm">
+              {p.title} <span aria-hidden="true">↗</span>
             </span>
           </button>
         ))}
       </div>
-
-      {lightboxIndex !== null ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image lightbox"
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-navy-900/90 p-4"
+      <p className="photo-caption mt-8" aria-live="polite">
+        {filtered.length} photographs · Select a photograph to view it in full.
+      </p>
+      {index !== null && (
+        <dialog
+          ref={dialog}
+          onCancel={close}
+          onClose={close}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") move(1);
+            if (e.key === "ArrowLeft") move(-1);
+          }}
+          aria-label="School photograph viewer"
+          className="gallery-dialog"
         >
           <button
-            id="lightbox-close-btn"
-            type="button"
-            onClick={closeLightbox}
+            autoFocus
+            onClick={close}
+            className="gallery-close"
             aria-label="Close image viewer"
-            className="lightbox-focusable absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
           >
-            <X className="h-5 w-5" aria-hidden="true" />
+            <X />
           </button>
-          <button
-            type="button"
-            onClick={showPrev}
-            aria-label="Previous image"
-            className="lightbox-focusable absolute left-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
-          >
-            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-          </button>
-          <div className="relative aspect-[4/3] w-full max-w-2xl">
-            <PlaceholderImage
-              src={filtered[lightboxIndex].image}
-              alt={filtered[lightboxIndex].title}
+          <div className="relative h-[65vh] w-full">
+            <Image
+              src={filtered[index].image}
+              alt={filtered[index].title}
               fill
-              className="object-contain"
               sizes="90vw"
+              className="object-contain"
             />
           </div>
-          <button
-            type="button"
-            onClick={showNext}
-            aria-label="Next image"
-            className="lightbox-focusable absolute right-4 flex h-11 w-11 items-center justify-center rounded-full bg-parchment-100/10 text-parchment-100 hover:bg-parchment-100/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-400 focus-visible:ring-offset-2"
-          >
-            <ChevronRight className="h-5 w-5" aria-hidden="true" />
-          </button>
-          <p className="absolute bottom-6 text-sm text-parchment-200" aria-live="polite">
-            {filtered[lightboxIndex].title}
-          </p>
-        </div>
-      ) : null}
+          <div className="gallery-controls">
+            <button onClick={() => move(-1)} aria-label="Previous image">
+              <ChevronLeft />
+            </button>
+            <p aria-live="polite">
+              {filtered[index].title}
+              <span className="block text-xs mt-2">
+                {index + 1} of {filtered.length}
+              </span>
+            </p>
+            <button onClick={() => move(1)} aria-label="Next image">
+              <ChevronRight />
+            </button>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 }

@@ -1,141 +1,79 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Phone } from "lucide-react";
-import { primaryNav } from '@/data/navigation';
-import { siteConfig } from '@/data/siteConfig';
-import { Button } from '@/components/ui/Button';
-import { MobileNavDrawer } from '@/components/layout/MobileNavDrawer';
-
+import { Menu, ArrowUpRight } from "lucide-react";
+import { primaryNav } from "@/data/navigation";
+import { MobileNavDrawer } from "./MobileNavDrawer";
 export function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-shadow ${
-        scrolled ? "shadow-card" : ""
-      }`}
-    >
-      {/*
-        Background layer carries the blur/translucency instead of the
-        <header> element itself. `backdrop-filter` (Tailwind `backdrop-blur`)
-        establishes a new containing block for any `position: fixed`
-        descendant — if it lived on <header>, anything fixed-positioned
-        rendered inside <header> (like a nav drawer) would be sized/clipped
-        to the header's own box instead of the viewport. Isolating it here
-        keeps <header> filter-free so this can't happen again.
-      */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 border-b border-navy-800/10 bg-parchment-200/95 backdrop-blur"
-      />
-
-      <div className="container-page flex items-center justify-between gap-4 py-3">
-        <Link href="/" className="flex items-center gap-3 shrink-0" aria-label={`${siteConfig.name} home`}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-navy-800/10 overflow-hidden shrink-0">
-            <Image
-              src="/placeholders/icon.png"
-              alt={`${siteConfig.name} logo`}
-              width={36}
-              height={36}
-              className="object-contain"
-              priority
-            />
+    <header className="site-header">
+      <div className="utility-bar">
+        <div className="container-page flex justify-between gap-4">
+          <span>
+            Zonnebloem, Cape Town <span className="mx-2">·</span> Established
+            1912
           </span>
-          <span className="hidden sm:block leading-tight">
-            <span className="block font-display text-lg text-navy-800">{siteConfig.name}</span>
-            <span className="block text-[11px] uppercase tracking-[0.16em] text-brass-600">
-              {siteConfig.motto}
-            </span>
-          </span>
-        </Link>
-
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {primaryNav.map((item: any) => (
-              <li
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => setOpenMenu(item.label)}
-                onMouseLeave={() => setOpenMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`flex items-center gap-1 rounded-xs px-3 py-2 text-sm font-semibold transition-colors duration-150 ${
-                    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href + "/"))
-                      ? "text-brass-600"
-                      : "text-navy-800 hover:text-brass-600"
-                  }`}
-                  aria-expanded={item.children ? openMenu === item.label : undefined}
-                  aria-haspopup={item.children ? "true" : undefined}
-                >
-                  {item.label}
-                </Link>
-                {item.children ? (
-                  <div
-                    className={`absolute left-0 top-full min-w-[15rem] rounded-xs border border-navy-800/10 bg-parchment-100 py-2 shadow-cardHover transition-all duration-150 ${
-                      openMenu === item.label
-                        ? "visible opacity-100 translate-y-0"
-                        : "invisible opacity-0 -translate-y-1"
-                    }`}
-                  >
-                    {item.children.map((child: any) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2 text-sm text-ink-light transition-colors duration-150 hover:bg-navy-800/5 hover:text-navy-800"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <a
-            href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-            className="hidden md:flex items-center gap-1.5 text-sm text-navy-800 transition-colors duration-150 hover:text-brass-600"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            {siteConfig.phone}
-          </a>
-          <Button href="/admissions#application-process" className="hidden sm:inline-flex" variant="primary">
-            Apply Now
-          </Button>
-          <button
-            type="button"
-            id="mobile-menu-button"
-            onClick={() => setMobileOpen(true)}
-            className="lg:hidden flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-xs border border-navy-800/20 transition-colors duration-150 hover:bg-navy-800/5"
-            aria-label="Open navigation menu"
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav-drawer"
-          >
-            <span className="block h-0.5 w-5 bg-navy-800" />
-            <span className="block h-0.5 w-5 bg-navy-800" />
-            <span className="block h-0.5 w-5 bg-navy-800" />
-          </button>
+          <div className="flex gap-6">
+            <Link href="/alumni">Alumni & community</Link>
+            <Link href="/parents-portal">Parent resources</Link>
+            <a href="tel:+27214652969">021 465 2969</a>
+          </div>
         </div>
       </div>
-
-      <MobileNavDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <div className="container-page header-main">
+        <Link
+          href="/"
+          className="brand"
+          aria-label="Trafalgar High School home"
+        >
+          <Image
+            src="/images/crest.png"
+            alt=""
+            width={62}
+            height={72}
+            priority
+            className="brand-crest"
+          />
+          <span>
+            <span className="brand-name">
+              Trafalgar<span>High School</span>
+            </span>
+            <span className="brand-motto">Per Angusta, Ad Augusta</span>
+          </span>
+        </Link>
+        <nav aria-label="Primary" className="desktop-nav">
+          {primaryNav
+            .filter((i) => i.href !== "/alumni" && i.href !== "/admissions")
+            .map((i) => (
+              <Link
+                key={i.href}
+                href={i.href}
+                aria-current={pathname === i.href ? "page" : undefined}
+              >
+                {i.label}
+              </Link>
+            ))}
+        </nav>
+        <Link href="/admissions" className="header-admissions">
+          Admissions <ArrowUpRight size={16} aria-hidden="true" />
+        </Link>
+        <button
+          id="mobile-menu-button"
+          className="menu-toggle"
+          onClick={() => setOpen(true)}
+          aria-label="Open navigation menu"
+          aria-expanded={open}
+          aria-controls="mobile-nav-drawer"
+        >
+          <Menu size={24} />
+        </button>
+      </div>
+      <MobileNavDrawer open={open} onClose={close} />
     </header>
   );
 }

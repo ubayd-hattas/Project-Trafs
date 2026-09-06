@@ -1,33 +1,17 @@
-# Trafalgar High School — Placeholders Policy
+# Content awaiting school confirmation
 
-Because full, final, up-to-date content and photography has not been secured, this project heavily relies on placeholder components. 
+The principal-demo routes no longer render sample news, dummy events, invented statistics, unconfirmed staff directories, empty downloads, or non-delivering forms. Old unused seed data remains clearly labelled in data/ as a record of the initial prototype.
 
-## Asset Placeholders
+Before official school adoption, obtain:
 
-All placeholder images are strictly placed inside `public/placeholders/`. 
-The following placeholder graphics currently exist and are actively referenced throughout the application:
-- `hero.jpg`
-- `history.jpg`
-- `principal.jpg`
-- `students.jpg`
-- `science-lab.jpg`
-- `sports.jpg`
-- `choir.jpg`
-- `assembly.jpg`
-- `gallery-1.jpg`, `gallery-2.jpg`, `gallery-3.jpg`
-- `hero-video.mp4`
+- Current matric results after the verified Class of 2024 result.
+- Approved annual fees, payment instructions and current school policies.
+- Confirmed email inboxes, official social accounts and alumni contacts.
+- Current newsletters, school notices, calendars and activity schedules.
+- Approved curriculum combinations and current learner support arrangements.
+- A higher-resolution Vice Principal portrait, if a larger portrait treatment is wanted.
+- School permission for public use of the selected photography and content.
 
-**How to replace:**
-Simply overwrite the corresponding files in the `public/placeholders/` directory with a real JPEG/MP4 file (e.g., save your new school front image as `public/placeholders/hero.jpg`), and Next.js will automatically update the interface without any code changes needed!
+These missing items are handled through useful contact guidance in the demo, not displayed as fabricated records. The user-provided leadership roles are used as confirmed for this proposal.
 
-## Content Placeholders
-
-Factual information has been reused where possible. However, missing or dynamic datasets (such as News, Staff, Events, Gallery, Alumni) use hardcoded dummy text inside the `data/` folder.
-- **News**: `data/news.ts`
-- **Events**: `data/events.ts`
-- **Alumni**: `data/alumni.ts`
-- **Achievements**: `data/achievements.ts`
-- **Gallery**: `data/gallery.ts`
-
-**How to replace:**
-Open any `.ts` file inside the `data/` directory and replace the mock text strings with real data. Long-term, this data should be fetched from a CMS instead of being hardcoded.
+See qa/asset-sources.md for provenance. No CMS or backend was added. The independent proposal is noindex by default.
