@@ -27,7 +27,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-navy-800"
+                className="flex min-h-[56px] w-full items-center justify-between gap-4 px-5 py-4 text-left text-lg font-bold text-navy-800"
               >
                 {item.question}
                 <ChevronDown
@@ -37,7 +37,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
               </button>
             </h3>
             {isOpen ? (
-              <div id={panelId} role="region" aria-labelledby={buttonId} className="prose-body px-5 pb-5 text-sm">
+              <div id={panelId} role="region" aria-labelledby={buttonId} className="prose-body px-5 pb-5 text-[17px]">
                 {item.answer}
               </div>
             ) : null}

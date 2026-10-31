@@ -1,47 +1,51 @@
 import type { Config } from "tailwindcss";
 
+// Colours sampled from the school crest (public/images/crest.png):
+// shield navy #2b2f48 and marigold gold #f0a830.
+// Gold 500 is for fills and rules only. Use 600/700 for gold text on light
+// backgrounds (both pass WCAG AA on parchment).
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
         navy: {
-          50: "#eef1f5",
-          100: "#d6dde7",
-          200: "#adbccf",
-          300: "#8399b6",
-          400: "#5a769e",
-          500: "#3d5a82",
-          600: "#2c4566",
-          700: "#20344e",
-          800: "#16253a", // primary brand navy
-          900: "#0d1726", // deepest navy
+          50: "#eef0f6",
+          100: "#d9dcea",
+          200: "#b3b8d2",
+          300: "#8a90b3",
+          400: "#626a93",
+          500: "#454c75",
+          600: "#343a5f",
+          700: "#2a2f4f",
+          800: "#22263f", // primary, crest shield navy
+          900: "#161a2c",
         },
         parchment: {
-          DEFAULT: "#faf7f0",
-          100: "#fdfcf9",
-          200: "#f7f2e8",
-          300: "#efe7d6",
+          DEFAULT: "#f9f6ee",
+          100: "#fdfbf6",
+          200: "#f4eee0",
+          300: "#ebe2cc",
         },
         brass: {
-          300: "#e0c179",
-          400: "#cda454",
-          500: "#b8893a",
-          600: "#806024",
-          700: "#755625",
+          300: "#f7cf7a",
+          400: "#f3b844",
+          500: "#eba22a", // crest gold
+          600: "#8a5905",
+          700: "#7d5106",
         },
         ink: {
-          DEFAULT: "#1c2430",
-          light: "#3f4a58",
-          muted: "#596573",
+          DEFAULT: "#1d2033",
+          light: "#3e4258",
+          muted: "#555a70",
         },
       },
       fontFamily: {
-        display: ["var(--font-fraunces)"],
-        body: ["var(--font-plex)"],
+        display: ["var(--font-caslon)", "Georgia", "serif"],
+        body: ["var(--font-atkinson)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "80rem",
@@ -51,16 +55,7 @@ const config: Config = {
       },
       boxShadow: {
         card: "none",
-        cardHover: "0 3px 10px rgba(13,23,38,0.06)",
-      },
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        fadeUp: "fadeUp 0.6s ease-out both",
+        cardHover: "0 3px 10px rgba(22,26,44,0.08)",
       },
     },
   },

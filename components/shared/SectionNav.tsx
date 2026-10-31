@@ -10,10 +10,22 @@ export function SectionNav({
   ariaLabel: string;
 }) {
   const [activeSection, setActiveSection] = useState<string>("");
+  const [top, setTop] = useState(0);
+
+  // Stick directly under the site header, whatever height it wraps to.
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!header) return;
+    const update = () => setTop(header.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const observers = new Map<string, IntersectionObserver>();
-    
+
     items.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (!element) return;
@@ -41,19 +53,21 @@ export function SectionNav({
   return (
     <nav
       aria-label={ariaLabel}
-      className="section-navigation sticky top-[84px] md:top-[127px] xl:top-[139px] z-20 border-b border-navy-800/10 bg-parchment-100/95 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden overflow-x-auto"
+      style={{ top }}
+      className="section-navigation sticky z-20 overflow-x-auto border-b border-parchment-300 bg-parchment-100/95 backdrop-blur [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
-      <div className="container-page flex items-center gap-1 py-3 min-w-max">
+      <div className="container-page flex min-w-max items-center gap-1 py-3">
         {items.map(({ id, label }) => {
           const isActive = activeSection === id;
           return (
             <a
               key={id}
               href={`#${id}`}
-              className={`rounded-xs px-4 py-2 text-sm font-semibold transition-colors duration-150 ${
+              aria-current={isActive ? "location" : undefined}
+              className={`min-h-[48px] inline-flex items-center px-4 text-[17px] font-bold transition-colors duration-150 ${
                 isActive
                   ? "bg-navy-800 text-parchment-100"
-                  : "text-ink-muted hover:bg-navy-800/5 hover:text-navy-800"
+                  : "text-navy-800 hover:bg-navy-800/5"
               }`}
             >
               {label}
