@@ -6,7 +6,7 @@ For whoever looks after the school's domain and WordPress site (a staff member o
 
 - The **new website** runs on Vercel and is built from this GitHub repository. It has every public page: home, admissions, academics, news, contact and so on.
 - The **existing WordPress site keeps running**, moved to a subdomain such as `news.trafalgarhighschool.co.za`. Staff log in and post news there exactly as they do today. The new website reads those posts every hour and shows them on its home page and News page.
-- The school's email (Trafalgarhigh2021@gmail.com) is a Gmail account and is not affected by any of this.
+- The school's email (admin@trafalgarhighschool.co.za) is a Gmail account and is not affected by any of this.
 
 Nothing is deleted at any step. If something goes wrong, changing the DNS records back to their old values restores the old site.
 
