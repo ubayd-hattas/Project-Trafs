@@ -2,7 +2,9 @@
 // public REST API. Staff keep publishing in WordPress as they do today; this
 // site picks the posts up within an hour.
 
-const API = "https://trafalgarhighschool.co.za/wp-json/wp/v2/posts";
+import { wordpressUrl } from "@/data/siteMode";
+
+const API = `${wordpressUrl}/wp-json/wp/v2/posts`;
 const REVALIDATE_SECONDS = 3600;
 const TIMEOUT_MS = 8000;
 

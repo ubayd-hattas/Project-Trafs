@@ -2,6 +2,8 @@
 // trafalgarhighschool.co.za site (2 July 2026, rechecked 31 October 2026).
 // Anything else is listed in PLACEHOLDERS.md.
 
+import { wordpressUrl } from "./siteMode";
+
 export const siteConfig = {
   name: "Trafalgar High School",
   shortName: "Trafalgar",
@@ -24,9 +26,11 @@ export const siteConfig = {
   hours: "Monday to Friday, 08:00 to 15:00", // verified
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Trafalgar+High+School+35+Kuiper+Street+Cape+Town",
-  liveSite: "https://trafalgarhighschool.co.za",
-  newsArchiveUrl: "https://trafalgarhighschool.co.za/news/",
-  pastPapersUrl: "https://trafalgarhighschool.co.za/past-exam-papers/",
+  // Pages that stay on the school WordPress site.
+  newsArchiveUrl: `${wordpressUrl}/news/`,
+  pastPapersUrl: `${wordpressUrl}/past-exam-papers/`,
+  principalWelcomeUrl: `${wordpressUrl}/welcome-note/`,
+  alumniSocietyUrl: `${wordpressUrl}/trafs-alumni-society/`,
   latestPassRate: "96.4%", // verified, Class of 2024
   latestMatricYear: 2024,
 } as const;

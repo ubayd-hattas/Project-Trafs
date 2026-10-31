@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/data/siteConfig";
 
 export default function NotFound() {
   return (
@@ -10,6 +11,13 @@ export default function NotFound() {
       <p className="mt-4 max-w-md text-ink-light">
         This page does not exist or has moved. Try the home page, or use the
         menu at the top.
+      </p>
+      <p className="mt-3 max-w-md text-ink-light">
+        Looking for an older news post? They are on the{" "}
+        <a className="font-bold underline" href={siteConfig.newsArchiveUrl}>
+          school news page
+        </a>
+        .
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Button href="/" variant="primary">

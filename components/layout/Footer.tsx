@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerColumns } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
+import { isOfficialSite } from "@/data/siteMode";
 export function Footer() {
   return (
     <footer className="site-footer">
@@ -45,8 +46,10 @@ export function Footer() {
       </div>
       <div className="container-page footer-bottom">
         <p>
-          © {new Date().getFullYear()} Trafalgar High School · Website proposal
-          by a former learner
+          © {new Date().getFullYear()} Trafalgar High School ·{" "}
+          {isOfficialSite
+            ? "Website by Ubayd Hattas, Class of 2025"
+            : "Website proposal by a former learner"}
         </p>
         <div className="flex flex-wrap gap-5">
           <Link href="/policies">Policies</Link>

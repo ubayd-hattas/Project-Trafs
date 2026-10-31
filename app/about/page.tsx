@@ -9,7 +9,7 @@ import { SectionNav } from "@/components/shared/SectionNav";
 import { Timeline } from "@/components/about/Timeline";
 import { Leadership } from "@/components/about/Leadership";
 import { CTASection } from "@/components/shared/CTASection";
-import { historyIntro, missionPoints } from "@/data/siteConfig";
+import { historyIntro, missionPoints, siteConfig } from "@/data/siteConfig";
 import { timeline } from "@/data/timeline";
 export const metadata: Metadata = {
   title: "Our school & history",
@@ -166,7 +166,7 @@ export default function AboutPage() {
                 A summary of the school’s published welcome.
               </p>
               <a
-                href="https://trafalgarhighschool.co.za/welcome-note/"
+                href={siteConfig.principalWelcomeUrl}
                 className="text-link mt-3"
               >
                 Read the Principal&apos;s full welcome <ArrowRight size={17} />

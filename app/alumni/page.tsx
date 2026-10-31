@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionNav } from "@/components/shared/SectionNav";
 import { CTASection } from "@/components/shared/CTASection";
+import { siteConfig } from "@/data/siteConfig";
 export const metadata: Metadata = {
   title: "Alumni & community",
   description:
@@ -47,7 +48,7 @@ export default function AlumniPage() {
             </p>
             <a
               className="text-link mt-5"
-              href="https://trafalgarhighschool.co.za/trafs-alumni-society/"
+              href={siteConfig.alumniSocietyUrl}
             >
               Trafs Alumni Society page <ArrowRight size={17} />
             </a>

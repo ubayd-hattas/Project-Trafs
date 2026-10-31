@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
+import { isOfficialSite } from "@/data/siteMode";
 export const metadata: Metadata = {
   title: "Privacy & this website",
   description:
@@ -18,16 +19,16 @@ export default function PrivacyPage() {
       <section className="editorial-section">
         <div className="container-page">
           <div className="max-w-3xl editorial-body">
-            <h2 className="section-heading mb-6">
-              An independent school website proposal.
-            </h2>
+            <h2 className="section-heading mb-6">What this website collects</h2>
+            {isOfficialSite ? null : (
+              <p>
+                This website is a redesign proposal for Trafalgar High School.
+                It is not yet the school’s official website.
+              </p>
+            )}
             <p>
-              This website is a redesign proposal for Trafalgar High School. It
-              is not the school’s official website.
-            </p>
-            <p>
-              There are no application submissions, contact forms, accounts or
-              payment facilities on this proposal. It does not ask you to enter
+              There are no application forms, contact forms, accounts or
+              payment facilities on this website. It does not ask you to enter
               learner or family information.
             </p>
             <h3 className="font-display text-2xl mt-8">
@@ -36,8 +37,7 @@ export default function PrivacyPage() {
             <p className="mt-4">
               Admissions links take you to the Western Cape Education
               Department. Directions open Google Maps. News headlines and
-              photographs are loaded from the school&apos;s own website,
-              trafalgarhighschool.co.za. Those services have their
+              photographs are loaded from the school&apos;s WordPress site. Those services have their
               own privacy practices. Website hosting may process technical
               request information needed to serve these pages.
             </p>

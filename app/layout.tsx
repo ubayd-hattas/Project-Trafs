@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteUrl } from "@/data/siteUrl";
 import { siteConfig } from "@/data/siteConfig";
+import { isOfficialSite } from "@/data/siteMode";
 
 // Headings: Libre Caslon, an old-style serif in the spirit of school honours
 // boards. Body: Atkinson Hyperlegible, designed by the Braille Institute for
@@ -31,7 +32,9 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  robots: { index: false, follow: false },
+  robots: isOfficialSite
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     apple: "/apple-icon.png",
