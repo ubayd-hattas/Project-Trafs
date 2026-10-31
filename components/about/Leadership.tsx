@@ -9,7 +9,6 @@ export function Leadership() {
             <Image src={p.image} alt={p.name} fill sizes="120px" />
           </div>
           <div>
-            <p className="eyebrow">School leadership</p>
             <h3>{p.name}</h3>
             <p>{p.role}</p>
           </div>

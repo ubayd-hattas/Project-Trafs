@@ -2,8 +2,9 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { X, ArrowUpRight } from "lucide-react";
-import { primaryNav } from "@/data/navigation";
+import { X, ArrowRight } from "lucide-react";
+import { primaryNav, secondaryNav } from "@/data/navigation";
+import { siteConfig } from "@/data/siteConfig";
 export function MobileNavDrawer({
   open,
   onClose,
@@ -55,33 +56,33 @@ export function MobileNavDrawer({
       id="mobile-nav-drawer"
       role="dialog"
       aria-modal="true"
-      aria-label="School navigation"
+      aria-label="Site menu"
       ref={ref}
     >
       <div className="mobile-menu-top">
-        <span className="font-display text-2xl">Trafalgar High School</span>
-        <button onClick={onClose} aria-label="Close navigation menu">
-          <X />
+        <span className="font-display text-2xl text-navy-800">Menu</span>
+        <button onClick={onClose} aria-label="Close menu">
+          <X aria-hidden="true" />
         </button>
       </div>
-      <p className="eyebrow mb-4">Explore Trafalgar</p>
-      <nav aria-label="Mobile primary">
+      <nav aria-label="Mobile main">
         <Link href="/" onClick={onClose}>
-          Home <ArrowUpRight size={18} />
+          Home <ArrowRight size={20} aria-hidden="true" />
         </Link>
-        {primaryNav.map((i) => (
+        {[...primaryNav, ...secondaryNav].map((i) => (
           <Link href={i.href} key={i.href} onClick={onClose}>
             {i.label}
-            <ArrowUpRight size={18} />
+            <ArrowRight size={20} aria-hidden="true" />
           </Link>
         ))}
       </nav>
-      <div className="mt-auto pt-8">
-        <a className="text-link" href="tel:+27214652969">
-          Call the school · 021 465 2969
+      <div className="mt-auto pt-8 text-lg">
+        <a className="text-link" href={siteConfig.phoneHref}>
+          Call the school: {siteConfig.phone}
         </a>
-        <p className="mt-3 text-sm text-ink-light">
-          35 Kuiper Street, Zonnebloem, Cape Town
+        <p className="mt-3 text-ink-light">
+          {siteConfig.address.line1}, {siteConfig.address.line2},{" "}
+          {siteConfig.address.city}
         </p>
       </div>
     </div>,
