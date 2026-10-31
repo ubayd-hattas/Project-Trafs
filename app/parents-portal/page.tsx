@@ -4,18 +4,22 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { KeyDates } from "@/components/shared/KeyDates";
+
+// Term dates grey out as they pass.
+export const revalidate = 3600;
 export const metadata: Metadata = {
-  title: "Parent resources",
+  title: "Information for parents",
   description:
-    "Useful starting points for Trafalgar parents: school notices, academic resources, policies and school office enquiries.",
+    "Term dates, school news, fees, documents and contact details for Trafalgar parents and guardians.",
 };
 export default function ParentResources() {
   return (
     <>
       <PageHero
-        eyebrow="For our families"
-        title="School information, within reach."
-        description="Useful starting points for parents and guardians."
+        eyebrow="For parents and guardians"
+        title="Information for parents"
+        description="Term dates, school news, fees, documents and how to reach the school office."
       />
       <Breadcrumbs trail={[{ label: "Parent resources" }]} />
       <section className="editorial-section">
@@ -30,7 +34,7 @@ export default function ParentResources() {
               requirements and learner-specific enquiries, contact the school
               office.
             </p>
-            <p className="text-sm text-ink-light mt-4">
+            <p className="text-base text-ink-light mt-4">
               This resource page does not provide access to private learner
               records.
             </p>
@@ -38,23 +42,23 @@ export default function ParentResources() {
           <div>
             {[
               {
-                title: "School notices & newsletters",
-                body: "Find out how to get current communications.",
-                href: "/news-events#newsletter-archive",
+                title: "School news and newsletters",
+                body: "Latest news from the school, and how to get a newsletter.",
+                href: "/news-events",
               },
               {
-                title: "Academic resources",
-                body: "Curriculum information and revision support.",
+                title: "Past exam papers",
+                body: "Grade 12 papers and revision resources.",
                 href: "/academics#past-papers",
               },
               {
                 title: "School policies",
-                body: "Request the current school documents.",
+                body: "How to get the Code of Conduct and other policies.",
                 href: "/policies",
               },
               {
-                title: "Fees & admissions",
-                body: "Guidance for applications and fee enquiries.",
+                title: "Fees and admissions",
+                body: "Fee enquiries and how applications work.",
                 href: "/admissions#fees",
               },
               {
@@ -72,6 +76,12 @@ export default function ParentResources() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="editorial-section section-tint" id="key-dates">
+        <div className="container-page editorial-grid">
+          <SectionHeading eyebrow="Key dates" title="Term dates" />
+          <KeyDates />
         </div>
       </section>
     </>

@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: { formats: ["image/webp"] },
+  images: {
+    formats: ["image/webp"],
+    // News photos are served from the school's WordPress uploads.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "trafalgarhighschool.co.za",
+        pathname: "/wp-content/uploads/**",
+      },
+    ],
+  },
   async redirects() {
     return [
 {"source":"/about/mission-vision","destination":"/about#mission","permanent":true},

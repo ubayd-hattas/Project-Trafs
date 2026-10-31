@@ -6,42 +6,73 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionNav } from "@/components/shared/SectionNav";
+import { LatestNews } from "@/components/news-events/LatestNews";
+import { KeyDates } from "@/components/shared/KeyDates";
 import { schoolArchive } from "@/data/schoolArchive";
+import { siteConfig } from "@/data/siteConfig";
+
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
-  title: "News & events",
+  title: "News and term dates",
   description:
-    "Moments from Trafalgar’s school archive and guidance on current notices, newsletters and events.",
+    "The latest Trafalgar High School news, this term's key dates, and photographs from the school archive.",
 };
+
 export default function NewsEventsPage() {
   return (
     <>
       <PageHero
-        eyebrow="News & events"
-        title="The life of our school."
-        description="School moments worth remembering, and a starting point for the information families need."
+        eyebrow="News and term dates"
+        title="What is happening at Trafalgar."
+        description="School news is posted by staff and appears here within the hour. Term dates are listed below."
       />
-      <Breadcrumbs trail={[{ label: "News & events" }]} />
+      <Breadcrumbs trail={[{ label: "News and term dates" }]} />
       <SectionNav
         items={[
-          { id: "latest-news", label: "School archive" },
-          { id: "events", label: "Notices & events" },
+          { id: "latest-news", label: "Latest news" },
+          { id: "key-dates", label: "Term dates" },
+          { id: "archive", label: "Photo archive" },
           { id: "newsletter-archive", label: "Newsletters" },
         ]}
         ariaLabel="News page sections"
       />
       <section className="editorial-section" id="latest-news">
         <div className="container-page">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading eyebrow="From the school" title="Latest news" />
+            <a href={siteConfig.newsArchiveUrl} className="text-link">
+              Older news <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+          <LatestNews count={9} />
+        </div>
+      </section>
+      <section className="editorial-section section-tint" id="key-dates">
+        <div className="container-page editorial-grid">
+          <div>
+            <SectionHeading eyebrow="Key dates" title="Term dates" />
+            <p className="editorial-body mt-5">
+              Dates can change. Check with the school office before you make
+              travel or work arrangements.
+            </p>
+          </div>
+          <KeyDates />
+        </div>
+      </section>
+      <section className="editorial-section" id="archive">
+        <div className="container-page">
           <SectionHeading
-            eyebrow="From the archive"
-            title="Trafalgar, in moments."
-            description="A selection from the school’s 2025 photo collection. These are archive features, rather than current announcements."
+            eyebrow="Photo archive"
+            title="Moments from 2025"
+            description="Photographs from the school's 2025 collection."
           />
-          <div className="mt-12">
+          <div className="mt-6">
             {schoolArchive.map((p) => (
               <article
                 key={p.slug}
                 id={p.slug}
-                className="grid md:grid-cols-2 gap-8 lg:gap-16 py-10 border-t border-navy-800/15 items-center"
+                className="grid items-center gap-8 border-t border-parchment-300 py-10 md:grid-cols-2 lg:gap-16"
               >
                 <div className="relative aspect-[16/10]">
                   <Image
@@ -54,12 +85,12 @@ export default function NewsEventsPage() {
                 </div>
                 <div>
                   <p className="eyebrow">
-                    {p.category} · {p.year} archive
+                    {p.category} · {p.year}
                   </p>
-                  <h2 className="section-heading mt-4">{p.title}</h2>
-                  <p className="editorial-body mt-5">{p.description}</p>
+                  <h3 className="mt-3 text-3xl">{p.title}</h3>
+                  <p className="editorial-body mt-4">{p.description}</p>
                   <Link href="/gallery" className="text-link mt-5">
-                    More school photographs <ArrowRight size={17} />
+                    More photographs <ArrowRight size={18} aria-hidden="true" />
                   </Link>
                 </div>
               </article>
@@ -67,45 +98,25 @@ export default function NewsEventsPage() {
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="events">
+      <section className="editorial-section section-tint" id="newsletter-archive">
         <div className="container-page editorial-grid">
-          <SectionHeading
-            eyebrow="For current families"
-            title="Notices & upcoming events."
-          />
+          <SectionHeading eyebrow="Newsletters" title="Looking for a newsletter?" />
           <div className="editorial-body">
             <p>
-              For confirmed event dates, parent meetings and the latest school
-              notices, please contact the school office or consult the school’s
-              existing website.
+              For the latest newsletter or a circular for your child&apos;s
+              grade, contact the school office.
             </p>
             <p>
-              Check details with the office before making arrangements to
-              attend.
+              Call{" "}
+              <a className="font-bold underline" href={siteConfig.phoneHref}>
+                {siteConfig.phone}
+              </a>{" "}
+              or email{" "}
+              <a className="font-bold underline break-all" href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </a>
+              .
             </p>
-            <a
-              href="https://trafalgarhighschool.co.za/"
-              className="text-link mt-5"
-            >
-              Existing school website <ArrowUpRight size={17} />
-            </a>
-          </div>
-        </div>
-      </section>
-      <section className="editorial-section" id="newsletter-archive">
-        <div className="container-page editorial-grid">
-          <SectionHeading
-            eyebrow="School communication"
-            title="Looking for a newsletter?"
-          />
-          <div className="editorial-body">
-            <p>
-              Contact the school office for the latest newsletter, circulars or
-              information for your learner’s grade.
-            </p>
-            <Link className="text-link mt-5" href="/contact">
-              Contact the school office <ArrowRight size={17} />
-            </Link>
           </div>
         </div>
       </section>
