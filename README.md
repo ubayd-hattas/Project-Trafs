@@ -13,7 +13,7 @@ The existing Next.js App Router / TypeScript / Tailwind application has been ref
 
 Use npm install, npm run dev, npm run build and npm run start. On PowerShell installations that block npm.ps1, use npm.cmd instead.
 
-For a custom preview domain, set NEXT_PUBLIC_SITE_URL. Vercel preview origins are detected from VERCEL_URL. No backend or CMS configuration is needed.
+Settings are listed in .env.example. News is read from the school WordPress site; to move trafalgarhighschool.co.za onto this site, follow [docs/HANDOVER.md](docs/HANDOVER.md).
 
 Deploy to Vercel using the normal Next.js preset, root directory, npm run build, and framework-managed output. No deployment has been performed by this redesign pass.
 

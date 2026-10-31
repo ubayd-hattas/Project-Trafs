@@ -17,4 +17,4 @@ The demo routes do not render sample news, dummy events, invented statistics, un
 - A higher-resolution Vice Principal portrait.
 - School permission to use the photographs and WordPress posts on this proposal.
 
-See qa/asset-sources.md for provenance. The proposal is noindex by default.
+See qa/asset-sources.md for provenance. The proposal is noindex until NEXT_PUBLIC_OFFICIAL_SITE is set to true; see docs/HANDOVER.md.
