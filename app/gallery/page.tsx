@@ -13,8 +13,8 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow="The school gallery"
-        title="A place. A community. A shared history."
-        description="Explore our campus and moments from the school archive. Activity photographs are labelled with their archive year."
+        title="Photographs of the school"
+        description="The campus and school life. Each activity photograph is labelled with the year it was taken."
       />
       <Breadcrumbs trail={[{ label: "Gallery" }]} />
       <section className="editorial-section">

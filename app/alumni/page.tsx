@@ -17,8 +17,8 @@ export default function AlumniPage() {
     <>
       <PageHero
         eyebrow="Alumni & community"
-        title="Your story doesn’t end at matric."
-        description="Once a Trafalgarian, always a Trafalgarian. A shared school history connects generations, wherever life takes them."
+        title="For former learners"
+        description="Reconnect with the school, share your photographs and memories, or find a way to help current learners."
       />
       <Breadcrumbs trail={[{ label: "Alumni" }]} />
       <SectionNav
@@ -33,7 +33,7 @@ export default function AlumniPage() {
         <div className="container-page editorial-grid">
           <SectionHeading
             eyebrow="A lifelong connection"
-            title="There is always a way back."
+            title="Reconnect with the school"
           />
           <div className="editorial-body">
             <p>
@@ -42,17 +42,19 @@ export default function AlumniPage() {
               coming together to celebrate the institution that connected them.
             </p>
             <p>
-              To reconnect with the Alumni Association or enquire about
-              reunions, contact the school office for current contact
-              arrangements.
+              The Trafs Alumni Society has a page on the school website. For
+              reunions or anything else, contact the school office.
             </p>
-            <Link className="text-link mt-5" href="/contact">
-              Reconnect with Trafalgar <ArrowRight size={17} />
-            </Link>
+            <a
+              className="text-link mt-5"
+              href="https://trafalgarhighschool.co.za/trafs-alumni-society/"
+            >
+              Trafs Alumni Society page <ArrowRight size={17} />
+            </a>
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="stories">
+      <section className="editorial-section section-tint" id="stories">
         <div className="container-page grid md:grid-cols-2 gap-12 items-center">
           <figure>
             <Image
@@ -69,12 +71,11 @@ export default function AlumniPage() {
           <div>
             <SectionHeading
               eyebrow="Shared memories"
-              title="Different generations. The same school spirit."
+              title="Share your memories"
             />
             <p className="editorial-body mt-6">
-              An old class photograph, a teacher’s encouragement, a friendship
-              that lasts. The school archive is a reminder of the many lives
-              connected by Trafalgar.
+              The school archive includes class photographs like this one of
+              the Class of 1969.
             </p>
             <p className="editorial-body mt-4">
               If you have photographs or memories to share, speak to the school
@@ -89,8 +90,8 @@ export default function AlumniPage() {
       <section className="editorial-section" id="give-back">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="Give back"
-            title="Help write the next chapter."
+            eyebrow="Support current learners"
+            title="Give back"
           />
           <div>
             <p className="editorial-body">
@@ -123,7 +124,7 @@ export default function AlumniPage() {
         </div>
       </section>
       <CTASection
-        title="Let’s keep the connection alive."
+        title="Get in touch with the school"
         primary={{ label: "Contact the school", href: "/contact" }}
         secondary={{ label: "Explore the gallery", href: "/gallery" }}
       />

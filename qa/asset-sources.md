@@ -24,3 +24,10 @@ Full-size originals were derived from the thumbnail URLs in the provided whats_h
 - Current admissions guidance was checked against https://www.westerncape.gov.za/education/service/learner-admissions on 6 September 2026. No fixed application dates are duplicated.
 - Learning-resource destination checked: https://wcedeportal.westerncape.gov.za/home .
 - Scraped fee amounts, payment accounts, deadlines, staff/committee names and email inboxes were not promoted to confirmed current facts.
+
+## Added 31 October 2026
+
+- News titles, dates and featured photographs: read at build and hourly from https://trafalgarhighschool.co.za/wp-json/wp/v2/posts. Titles are shown with emoji removed; post text is not copied. Each card links to the full post on the school site.
+- Term dates: "Calendar" block on https://trafalgarhighschool.co.za/ , read 31 October 2026.
+- School email (Trafalgarhigh2021@gmail.com), past exam papers page, Principal's welcome page and Trafs Alumni Society page: links on the live site, checked 31 October 2026.
+- Colours sampled from public/images/crest.png: shield navy about #2b2f48, gold about #f0a830.

@@ -16,14 +16,14 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact & visit"
-        title="We look forward to hearing from you."
-        description="For admissions, school information or reconnecting with Trafalgar, start with the school office."
+        title="Contact the school"
+        description="Call or email the school office, or visit us at 35 Kuiper Street, Zonnebloem."
       />
       <Breadcrumbs trail={[{ label: "Contact" }]} />
       <section className="editorial-section">
         <div className="container-page grid md:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <SectionHeading eyebrow="The school office" title="Let’s talk." />
+            <SectionHeading eyebrow="Contact details" title="School office" />
             <dl className="mt-8">
               <div className="py-5 border-b border-navy-800/15">
                 <dt className="eyebrow">Telephone</dt>
@@ -37,8 +37,19 @@ export default function ContactPage() {
                 </dd>
               </div>
               <div className="py-5 border-b border-navy-800/15">
+                <dt className="eyebrow">Email</dt>
+                <dd className="mt-3 text-lg break-all">
+                  <a
+                    className="font-bold underline decoration-brass-500 decoration-2"
+                    href={"mailto:" + siteConfig.email}
+                  >
+                    {siteConfig.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="py-5 border-b border-navy-800/15">
                 <dt className="eyebrow">Office hours</dt>
-                <dd className="mt-3 text-lg">Monday–Friday · 08:00–15:00</dd>
+                <dd className="mt-3 text-lg">{siteConfig.hours}</dd>
               </div>
               <div className="py-5">
                 <dt className="eyebrow">Find us</dt>
@@ -55,7 +66,7 @@ export default function ContactPage() {
             </p>
             <a
               className="text-link mt-5"
-              href="https://www.google.com/maps/search/?api=1&query=Trafalgar+High+School+35+Kuiper+Street+Cape+Town"
+              href={siteConfig.mapsUrl}
             >
               Get directions in Google Maps <ArrowUpRight size={17} />
             </a>
@@ -65,7 +76,7 @@ export default function ContactPage() {
               <div className="relative aspect-[4/3]">
                 <Image
                   src="/images/entrance.webp"
-                  alt="The stone boundary wall and entrance to Trafalgar High School beneath Table Mountain"
+                  alt="The stone boundary wall and entrance to Trafalgar High School, with Table Mountain behind"
                   fill
                   sizes="(min-width:768px) 50vw,100vw"
                   className="object-cover"

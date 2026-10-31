@@ -8,15 +8,15 @@ export default function NotFound() {
         Page not found
       </h2>
       <p className="mt-4 max-w-md text-ink-light">
-        Sorry, we couldn&rsquo;t find the page you&rsquo;re looking for. It
-        might have been moved or deleted.
+        This page does not exist or has moved. Try the home page, or use the
+        menu at the top.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Button href="/" variant="primary">
-          Go Home
+          Go to the home page
         </Button>
         <Button href="/contact" variant="ghost">
-          Contact Us
+          Contact the school
         </Button>
       </div>
     </div>

@@ -14,15 +14,15 @@ export default function PoliciesPage() {
     <>
       <PageHero
         eyebrow="School information"
-        title="Policies & documents."
-        description="Start with the current, approved documents for the information that matters to your family."
+        title="Policies and documents"
+        description="The school office can give you the current version of any school policy."
       />
       <Breadcrumbs trail={[{ label: "Policies" }]} />
       <section className="editorial-section">
         <div className="container-page editorial-grid">
           <SectionHeading
             eyebrow="Request a document"
-            title="Clear information. Informed decisions."
+            title="Ask the office for a document"
           />
           <div className="editorial-body">
             <p>

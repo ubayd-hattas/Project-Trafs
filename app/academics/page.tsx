@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionNav } from "@/components/shared/SectionNav";
 import { CTASection } from "@/components/shared/CTASection";
+import { siteConfig } from "@/data/siteConfig";
 export const metadata: Metadata = {
   title: "Academics & matric results",
   description:
@@ -44,8 +45,8 @@ export default function AcademicsPage() {
     <>
       <PageHero
         eyebrow="Academics"
-        title="Learning for the possibilities ahead."
-        description="A broad foundation. Informed subject choices. A shared commitment to educational excellence, from Grade 8 to matric."
+        title="Subjects, results and past papers"
+        description="What learners study from Grade 8 to matric, the latest matric result, and where to find past exam papers."
       />
       <Breadcrumbs trail={[{ label: "Academics" }]} />
       <SectionNav items={sections} ariaLabel="Academics page sections" />
@@ -54,27 +55,26 @@ export default function AcademicsPage() {
           <div className="editorial-grid">
             <SectionHeading
               eyebrow="The learning journey"
-              title="From a strong foundation to your next step."
+              title="The curriculum from Grade 8 to 12"
             />
             <p className="editorial-body">
               Trafalgar follows the Curriculum and Assessment Policy Statement
-              (CAPS). The Senior Phase builds a broad foundation; the Further
-              Education and Training phase develops the subject choices that
-              lead to matric.
+              (CAPS). In the Senior Phase (Grades 8 and 9) every learner takes the
+              same subjects. In the Further Education and Training phase (Grades
+              10 to 12) learners choose the subjects they will write in matric.
             </p>
           </div>
           <div className="mt-12 grid gap-10 md:grid-cols-2">
             <div className="border-t-2 border-brass-500 pt-7">
-              <p className="eyebrow">Grades 8–9 · Senior Phase</p>
-              <h3 className="font-display text-3xl mt-4">Explore widely.</h3>
+              <p className="eyebrow">Grades 8 and 9 · Senior Phase</p>
+              <h3 className="font-display text-3xl mt-4">Subjects every learner takes</h3>
               <p className="editorial-body mt-4">
-                Build a foundation across languages, sciences, humanities,
-                commerce and the arts.
+                Languages, sciences, humanities, commerce and the arts.
               </p>
               <ul className="mt-6 grid sm:grid-cols-2 gap-x-8">
                 {senior.map((s) => (
                   <li
-                    className="border-b border-navy-800/10 py-3 text-sm"
+                    className="border-b border-navy-800/10 py-3 text-base"
                     key={s}
                   >
                     {s}
@@ -83,20 +83,19 @@ export default function AcademicsPage() {
               </ul>
             </div>
             <div className="border-t-2 border-navy-800 pt-7" id="subjects">
-              <p className="eyebrow">Grades 10–12 · FET Phase</p>
+              <p className="eyebrow">Grades 10 to 12 · FET Phase</p>
               <h3 className="font-display text-3xl mt-4">
-                Choose with purpose.
+                Choosing matric subjects
               </h3>
               <p className="editorial-body mt-4">
-                Build your subject combination around your strengths and
-                interests. Speak to the school about the combinations available
-                for your year.
+                Every learner takes the core subjects and adds electives. Ask the
+                school which combinations are offered for your year.
               </p>
               <details className="mt-6 border-b border-navy-800/15 py-4" open>
                 <summary className="font-semibold cursor-pointer min-h-8">
                   Core subjects
                 </summary>
-                <p className="text-sm leading-7 mt-3">
+                <p className="text-base leading-7 mt-3">
                   English Home Language, Afrikaans First Additional Language,
                   Mathematics or Mathematical Literacy, and Life Orientation.
                 </p>
@@ -105,7 +104,7 @@ export default function AcademicsPage() {
                 <summary className="font-semibold cursor-pointer min-h-8">
                   Explore elective subjects
                 </summary>
-                <ul className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                <ul className="mt-3 grid grid-cols-2 gap-3 text-base">
                   {electives.map((s) => (
                     <li key={s}>{s}</li>
                   ))}
@@ -131,15 +130,14 @@ export default function AcademicsPage() {
             <p className="mt-4 text-parchment-200">Matric pass rate</p>
           </div>
           <div>
-            <h2 className="section-heading">A result worth celebrating.</h2>
+            <h2 className="section-heading">Class of 2024 results</h2>
             <p className="editorial-body mt-6">
               Congratulations to Trafalgar’s Class of 2024 on a matric pass rate
               of 96.4%.
             </p>
-            <p className="text-sm text-parchment-200/75 leading-7 mt-5">
-              This is the verified 2024 result published on the existing school
-              website. For subsequent results and detailed performance
-              information, please contact the school.
+            <p className="text-base text-parchment-200/75 leading-7 mt-5">
+              This is the 2024 result published on the school website. For
+              later results or a subject breakdown, contact the school.
             </p>
             <Link className="text-link mt-5" href="/contact">
               Enquire about results <ArrowRight size={17} />
@@ -151,10 +149,17 @@ export default function AcademicsPage() {
         <div className="container-page editorial-grid">
           <SectionHeading
             eyebrow="Prepare & practise"
-            title="Resources for your revision."
-            description="Go directly to the organisations that publish and maintain these learning materials."
+            title="Past exam papers"
+            description="Start with the school's own Grade 12 papers, then the national and provincial collections."
           />
           <div>
+            <a className="resource-row" href={siteConfig.pastPapersUrl}>
+              <div>
+                <h3>Trafalgar Grade 12 past papers</h3>
+                <p>Papers collected by the school, on the school website.</p>
+              </div>
+              <ArrowUpRight className="shrink-0" aria-hidden="true" />
+            </a>
             <a
               className="resource-row"
               href="https://wcedeportal.westerncape.gov.za/home"
@@ -192,11 +197,11 @@ export default function AcademicsPage() {
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="support">
+      <section className="editorial-section section-tint" id="support">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="Ask for guidance"
-            title="You don’t have to work it out alone."
+            eyebrow="Support"
+            title="Help with subjects and learning"
           />
           <div className="editorial-body">
             <p>
@@ -214,7 +219,7 @@ export default function AcademicsPage() {
         </div>
       </section>
       <CTASection
-        title="See yourself at Trafalgar."
+        title="Thinking of applying?"
         primary={{ label: "Explore admissions", href: "/admissions" }}
         secondary={{ label: "Student life", href: "/student-life" }}
       />

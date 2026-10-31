@@ -49,7 +49,7 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
             aria-pressed={category === c}
             onClick={() => setCategory(c)}
             className={
-              "min-h-11 px-4 py-2 text-sm border border-navy-800/20 " +
+              "min-h-11 px-4 py-2 text-base border border-navy-800/20 " +
               (category === c
                 ? "bg-navy-800 text-white"
                 : "hover:bg-navy-800/5")
@@ -78,7 +78,7 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
                 className="object-cover transition-transform group-hover:scale-[1.02]"
               />
             </div>
-            <span className="block mt-3 text-sm">
+            <span className="block mt-3 text-base">
               {p.title} <span aria-hidden="true">↗</span>
             </span>
           </button>
@@ -122,7 +122,7 @@ export function PhotoGallery({ items }: { items: GalleryItem[] }) {
             </button>
             <p aria-live="polite">
               {filtered[index].title}
-              <span className="block text-xs mt-2">
+              <span className="block text-sm mt-2">
                 {index + 1} of {filtered.length}
               </span>
             </p>

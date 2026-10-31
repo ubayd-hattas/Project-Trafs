@@ -17,8 +17,8 @@ export default function StudentLifePage() {
     <>
       <PageHero
         eyebrow="Student life"
-        title="Find your voice. Find your people."
-        description="The moments between lessons are part of a school’s story too. Explore a glimpse of life in the Trafalgar community."
+        title="Sport, culture and leadership"
+        description="What learners do outside the classroom, from athletics to the Representative Council of Learners."
         image="/images/school-hall-2025.webp"
       />
       <Breadcrumbs trail={[{ label: "Student life" }]} />
@@ -49,13 +49,12 @@ export default function StudentLifePage() {
           </figure>
           <div>
             <SectionHeading
-              eyebrow="Sport & school spirit"
-              title="Give it your all."
+              eyebrow="Sport"
+              title="Athletics and sport"
             />
             <p className="editorial-body mt-6">
-              The anticipation at the starting line. The encouragement from the
-              sidelines. Athletics is one of the moments captured in Trafalgar’s
-              school photo archive.
+              Trafalgar learners competed in athletics in 2025. The photograph
+              here is from that season.
             </p>
             <p className="editorial-body mt-4">
               For current sporting activities, fixtures and participation
@@ -67,17 +66,16 @@ export default function StudentLifePage() {
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="culture-arts">
+      <section className="editorial-section section-tint" id="culture-arts">
         <div className="container-page editorial-grid items-center">
           <div>
             <SectionHeading
               eyebrow="Culture & community"
-              title="A place to be heard."
+              title="Culture and community"
             />
             <p className="editorial-body mt-6">
-              School life creates space for expression and connection. These
-              moments in the school hall and courtyard show a community coming
-              together.
+              Learners speak, perform and gather in the school hall and
+              courtyard. These photographs are from 2025.
             </p>
             <p className="editorial-body mt-4">
               Ask the school about current cultural activities, clubs and
@@ -103,8 +101,8 @@ export default function StudentLifePage() {
       <section className="editorial-section" id="leadership">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="Learner leadership"
-            title="Learning to lead. Learning to contribute."
+            eyebrow="Leadership"
+            title="Learner leadership"
           />
           <div className="editorial-body">
             <p>
@@ -116,16 +114,16 @@ export default function StudentLifePage() {
               selection arrangements and how learners can get involved.
             </p>
             <Link className="text-link mt-5" href="/alumni">
-              A connection beyond matric <ArrowRight size={17} />
+              Alumni <ArrowRight size={17} />
             </Link>
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="code-of-conduct">
+      <section className="editorial-section section-tint" id="code-of-conduct">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="Respect & belonging"
-            title="Being part of the community."
+            eyebrow="Behaviour"
+            title="Code of Conduct"
           />
           <div className="editorial-body">
             <p>
@@ -140,7 +138,7 @@ export default function StudentLifePage() {
         </div>
       </section>
       <CTASection
-        title="Make your own Trafalgar memories."
+        title="Thinking of applying?"
         primary={{ label: "Explore admissions", href: "/admissions" }}
         secondary={{ label: "Contact the school", href: "/contact" }}
       />

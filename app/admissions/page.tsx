@@ -8,6 +8,7 @@ import { CTASection } from "@/components/shared/CTASection";
 import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
 import { admissionsFaq } from "@/data/faq";
+import { siteConfig } from "@/data/siteConfig";
 export const metadata: Metadata = {
   title: "Admissions",
   description:
@@ -27,8 +28,8 @@ export default function AdmissionsPage() {
     <>
       <PageHero
         eyebrow="Admissions"
-        title="A new chapter starts here."
-        description="Choosing a school is an important step. Here is a clear starting point for families considering Trafalgar."
+        title="Applying to Trafalgar"
+        description="Applications for Grade 8 and transfers go through the Western Cape Education Department (WCED). This page explains the steps and what to have ready."
         image="/images/grade-8-2025.webp"
       />
       <Breadcrumbs trail={[{ label: "Admissions" }]} />
@@ -37,8 +38,8 @@ export default function AdmissionsPage() {
         <div className="container-page editorial-grid">
           <div>
             <SectionHeading
-              eyebrow="How to apply"
-              title="Your route to Trafalgar."
+              eyebrow="Step by step"
+              title="How to apply"
             />
             <p className="editorial-body mt-6">
               School applications are coordinated by the Western Cape Education
@@ -73,7 +74,7 @@ export default function AdmissionsPage() {
                 className="flex gap-6 border-b border-navy-800/15 py-6 first:pt-0"
               >
                 <span className="font-display text-3xl text-brass-700">
-                  0{i + 1}
+                  {i + 1}
                 </span>
                 <div>
                   <h3 className="font-display text-2xl">{s.title}</h3>
@@ -89,11 +90,11 @@ export default function AdmissionsPage() {
           </ol>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="requirements">
+      <section className="editorial-section section-tint" id="requirements">
         <div className="container-page editorial-grid">
           <SectionHeading
             eyebrow="Get prepared"
-            title="Documents to have ready."
+            title="Documents to have ready"
             description="Check the complete WCED checklist for the identification documents that apply to your family."
           />
           <div>
@@ -107,7 +108,7 @@ export default function AdmissionsPage() {
                   key={d}
                   className="flex gap-4 py-5 border-b border-navy-800/15 text-lg"
                 >
-                  <span className="text-brass-700">0{i + 1}</span>
+                  <span className="text-brass-700">{i + 1}</span>
                   {d}
                 </li>
               ))}
@@ -121,8 +122,8 @@ export default function AdmissionsPage() {
       <section className="editorial-section" id="fees">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="Planning ahead"
-            title="Fees, assistance & school arrangements."
+            eyebrow="Fees"
+            title="Fees and fee exemptions"
           />
           <div className="editorial-body">
             <p>
@@ -137,21 +138,21 @@ export default function AdmissionsPage() {
             <a className="text-link mt-5" href="tel:+27214652969">
               Call 021 465 2969 <ArrowUpRight size={17} />
             </a>
-            <p className="text-sm mt-4">Monday–Friday · 08:00–15:00</p>
+            <p className="mt-4">{siteConfig.hours}</p>
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="faq">
+      <section className="editorial-section section-tint" id="faq">
         <div className="container-page editorial-grid">
           <SectionHeading
-            eyebrow="A little clarity"
-            title="Common questions."
+            eyebrow="Questions"
+            title="Common questions"
           />
           <Accordion items={admissionsFaq} />
         </div>
       </section>
       <CTASection
-        title="Let’s help you take the next step."
+        title="Still have a question?"
         description="Contact the school office for school-specific enquiries, or visit WCED for application support."
         primary={{ label: "Contact the school", href: "/contact" }}
         secondary={{ label: "WCED guidance", href: guidance }}

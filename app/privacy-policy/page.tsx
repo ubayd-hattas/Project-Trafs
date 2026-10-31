@@ -35,7 +35,9 @@ export default function PrivacyPage() {
             </h3>
             <p className="mt-4">
               Admissions links take you to the Western Cape Education
-              Department. Directions open Google Maps. Those services have their
+              Department. Directions open Google Maps. News headlines and
+              photographs are loaded from the school&apos;s own website,
+              trafalgarhighschool.co.za. Those services have their
               own privacy practices. Website hosting may process technical
               request information needed to serve these pages.
             </p>

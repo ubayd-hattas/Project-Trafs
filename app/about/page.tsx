@@ -27,8 +27,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Trafalgar"
-        title="More than a century of purpose."
-        description="Our story began with a belief in access to education. It continues with every learner who walks through our doors."
+        title="About Trafalgar High School"
+        description="A public high school in Zonnebloem, Cape Town, founded in 1912. Our history, our values and who leads the school today."
         image="/images/campus.webp"
       />
       <Breadcrumbs trail={[{ label: "About" }]} />
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className="container-page editorial-grid">
           <SectionHeading
             eyebrow="Our school"
-            title="In the heart of Cape Town. Part of its history."
+            title="Where we are and who we serve"
           />
           <div className="editorial-body">
             <p>
@@ -57,19 +57,18 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="history">
+      <section className="editorial-section section-tint" id="history">
         <div className="container-page">
           <div className="grid gap-12 md:grid-cols-[1.5fr_.7fr]">
             <div>
               <SectionHeading
                 eyebrow="Since 1912"
-                title="Where it all began."
+                title="How the school started"
               />
               <p className="editorial-body mt-6">{historyIntro}</p>
               <p className="editorial-body mt-5">
-                That founding belief — that education can change social and
-                economic circumstances — remains central to Trafalgar’s
-                identity.
+                Trafalgar still works from that belief: a good education can
+                change a family&apos;s circumstances.
               </p>
             </div>
             <figure className="mx-auto w-full max-w-[250px]">
@@ -115,12 +114,12 @@ export default function AboutPage() {
           <div>
             <SectionHeading
               eyebrow="Our commitments"
-              title="Values that endure."
+              title="Our values"
             />
             <p className="font-display text-2xl italic mt-8">
               Per Angusta, Ad Augusta
             </p>
-            <p className="text-sm text-ink-light mt-3">
+            <p className="text-base text-ink-light mt-3">
               Through difficulties, to honours.
             </p>
           </div>
@@ -130,18 +129,18 @@ export default function AboutPage() {
                 key={p}
                 className="flex gap-5 py-5 border-b border-navy-800/15 first:pt-0"
               >
-                <span className="text-brass-700 text-sm pt-1">0{i + 1}</span>
+                <span className="text-brass-700 text-base pt-1">{i + 1}</span>
                 <p className="editorial-body">{p}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
-      <section className="editorial-section bg-[#efede6]" id="leadership">
+      <section className="editorial-section section-tint" id="leadership">
         <div className="container-page">
           <SectionHeading
             eyebrow="School leadership"
-            title="Meet our leadership."
+            title="Who leads the school"
           />
           <div className="mt-10">
             <Leadership />
@@ -163,25 +162,25 @@ export default function AboutPage() {
                 motto connects that history with the challenges and
                 possibilities ahead.
               </p>
-              <p className="text-sm">
+              <p className="text-base">
                 A summary of the school’s published welcome.
               </p>
               <a
-                href="https://trafalgarhighschool.co.za/"
+                href="https://trafalgarhighschool.co.za/welcome-note/"
                 className="text-link mt-3"
               >
-                Visit the existing school website <ArrowRight size={17} />
+                Read the Principal&apos;s full welcome <ArrowRight size={17} />
               </a>
             </div>
           </div>
         </div>
       </section>
-      <section className="editorial-section border-t border-navy-800/15" id="school-song"><div className="container-page editorial-grid"><SectionHeading eyebrow="A shared tradition" title="The school song."/><details className="border-y border-navy-800/15 py-5"><summary className="cursor-pointer font-display text-2xl min-h-11">Listen & read the words</summary><p className="editorial-body mt-5">Written in 1939 by Alexander Busch and set to music by fellow pupil Reggie Lesch, the school song is part of Trafalgar’s heritage.</p><audio controls preload="none" className="w-full mt-6" aria-label="Trafalgar school song"><source src="/placeholders/school-song.mp3" type="audio/mpeg"/></audio><div className="grid sm:grid-cols-2 gap-6 text-sm leading-7 mt-7"><div><h3 className="font-display text-xl mb-3">Verse 1</h3><p>Trafalgar, glorious name<br/>Enshrined in many hearts<br/>And thou shalt spread thy fame<br/>In near and distant parts.<br/>Thy name we do adore<br/>This day and evermore<br/>The name, the very soul<br/>That spurs us to our goal</p></div><div><h3 className="font-display text-xl mb-3">Verse 2</h3><p>Thou art our hope, our light<br/>To thee our all of praise<br/>Thou giv’st us strength to fight<br/>Enkindled by thy rays<br/>Though oft’ the hope seem vain<br/>There’s nought us shall restrain<br/>From battling with a will<br/>Undaunted, hopeful still</p></div><div className="sm:col-span-2"><h3 className="font-display text-xl mb-3">Chorus</h3><p>O Trafalgarians, be ye proud<br/>Extol that thrice blessed name<br/>And raise your adoration loud<br/>Thus shall ye spread its fame</p></div></div></details></div></section>
+      <section className="editorial-section border-t border-navy-800/15" id="school-song"><div className="container-page editorial-grid"><SectionHeading eyebrow="A shared tradition" title="The school song."/><details className="border-y border-navy-800/15 py-5"><summary className="cursor-pointer font-display text-2xl min-h-11">Listen & read the words</summary><p className="editorial-body mt-5">Written in 1939 by Alexander Busch and set to music by fellow pupil Reggie Lesch, the school song is part of Trafalgar’s heritage.</p><audio controls preload="none" className="w-full mt-6" aria-label="Trafalgar school song"><source src="/placeholders/school-song.mp3" type="audio/mpeg"/></audio><div className="grid sm:grid-cols-2 gap-6 text-base leading-7 mt-7"><div><h3 className="font-display text-xl mb-3">Verse 1</h3><p>Trafalgar, glorious name<br/>Enshrined in many hearts<br/>And thou shalt spread thy fame<br/>In near and distant parts.<br/>Thy name we do adore<br/>This day and evermore<br/>The name, the very soul<br/>That spurs us to our goal</p></div><div><h3 className="font-display text-xl mb-3">Verse 2</h3><p>Thou art our hope, our light<br/>To thee our all of praise<br/>Thou giv’st us strength to fight<br/>Enkindled by thy rays<br/>Though oft’ the hope seem vain<br/>There’s nought us shall restrain<br/>From battling with a will<br/>Undaunted, hopeful still</p></div><div className="sm:col-span-2"><h3 className="font-display text-xl mb-3">Chorus</h3><p>O Trafalgarians, be ye proud<br/>Extol that thrice blessed name<br/>And raise your adoration loud<br/>Thus shall ye spread its fame</p></div></div></details></div></section>
       <CTASection
-        title="Become part of the story."
-        description="Explore learning at Trafalgar and find out how to take the next step."
-        primary={{ label: "Admissions", href: "/admissions" }}
-        secondary={{ label: "Explore academics", href: "/academics" }}
+        title="Thinking of applying?"
+        description="Read how applications for Grade 8 and transfers work."
+        primary={{ label: "How to apply", href: "/admissions" }}
+        secondary={{ label: "Subjects we offer", href: "/academics" }}
       />
     </>
   );
