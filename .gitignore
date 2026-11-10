@@ -8,3 +8,8 @@ qa/asset-candidates/
 
 # Build artefacts
 *.tsbuildinfo
+
+# Secrets
+.env
+.env.*
+!.env.example
