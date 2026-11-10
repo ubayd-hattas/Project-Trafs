@@ -5,3 +5,6 @@ node_modules/
 qa/*.png
 qa/asset-candidates/
 .node_modules-repair-backup/
+
+# Build artefacts
+*.tsbuildinfo
